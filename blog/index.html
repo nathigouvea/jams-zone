@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — jams.zone</title>
+  <meta name="description" content="Practical guides, tool reviews, and tips for designers and developers. From the team at jams.zone." />
+  <meta property="og:title" content="Blog — jams.zone" />
+  <meta property="og:description" content="Practical guides, tool reviews, and tips for designers and developers." />
+  <meta property="og:image" content="https://jams.zone/og-image.png" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://jams.zone/blog/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <div class="nav__inner">
+          <a href="../index.html" class="nav__logo">jams<span>.</span></a>
+          <div class="nav__links">
+            <a href="../products.html">Products</a>
+            <a href="index.html" class="active">Blog</a>
+            <a href="#">About</a>
+          </div>
+          <a href="../products.html" class="btn btn-primary btn-sm nav__cta">Browse products</a>
+          <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <nav class="nav__mobile" aria-label="Mobile navigation">
+      <a href="../products.html">Products</a>
+      <a href="index.html">Blog</a>
+      <a href="#">About</a>
+      <a href="../products.html" class="btn btn-primary btn-sm" style="width:fit-content">Browse products</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-label="Blog header">
+      <div class="container">
+        <h1>From the blog</h1>
+        <p>Practical guides for designers and developers. No fluff, no filler.</p>
+      </div>
+    </section>
+
+    <!-- BLOG LIST -->
+    <section class="blog-list-section" aria-label="Blog posts">
+      <div class="container">
+
+        <!-- Featured post -->
+        <a href="best-framer-templates-saas-2026.html" class="blog-featured" aria-label="Read: The 7 Best SaaS Landing Page Templates for Framer in 2026">
+          <div class="blog-featured__thumb thumb-framer">
+            <span class="blog-card__thumb-title" style="font-size:1.25rem;">The 7 Best SaaS Landing Page Templates for Framer in 2026</span>
+          </div>
+          <div class="blog-featured__body">
+            <p class="blog-featured__tag">Templates</p>
+            <h2 class="blog-featured__title">The 7 Best SaaS Landing Page Templates for Framer in 2026</h2>
+            <p class="blog-featured__excerpt">The Framer ecosystem has exploded. There are hundreds of templates to choose from — but which ones are actually worth buying? We reviewed the top options for SaaS and tech products and ranked them honestly.</p>
+            <div class="blog-featured__meta">
+              <span>Mar 10, 2026</span> &middot; <span>6 min read</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Post grid -->
+        <div class="blog-grid">
+
+          <article class="blog-card">
+            <div class="blog-card__thumb thumb-cursor" aria-hidden="true">
+              <span class="blog-card__thumb-title">How to Use Cursor AI as a Web Designer</span>
+            </div>
+            <div class="blog-card__body">
+              <div class="blog-card__meta">
+                <span class="blog-card__tag">Tools</span>
+                <span>·</span>
+                <time datetime="2026-03-05">Mar 5, 2026</time>
+                <span>·</span>
+                <span>7 min read</span>
+              </div>
+              <h2 class="blog-card__title">How to Use Cursor AI as a Web Designer (Practical Guide)</h2>
+              <p class="blog-card__excerpt">Cursor is having a moment. But most tutorials assume you're a developer. This guide is for designers who want to use it too — without learning to code.</p>
+              <a href="how-to-use-cursor-as-a-web-designer.html" class="blog-card__link">Read article →</a>
+            </div>
+          </article>
+
+          <article class="blog-card">
+            <div class="blog-card__thumb thumb-notion" aria-hidden="true">
+              <span class="blog-card__thumb-title">The Best Free Notion Template for Freelancers in 2026</span>
+            </div>
+            <div class="blog-card__body">
+              <div class="blog-card__meta">
+                <span class="blog-card__tag">Notion</span>
+                <span>·</span>
+                <time datetime="2026-02-28">Feb 28, 2026</time>
+                <span>·</span>
+                <span>4 min read</span>
+              </div>
+              <h2 class="blog-card__title">The Best Free Notion Template for Freelancers in 2026</h2>
+              <p class="blog-card__excerpt">Stop cobbling together your client projects in a mess of Google Docs and spreadsheets. This free Notion template puts your entire freelance business in one place.</p>
+              <a href="free-notion-freelancer-template.html" class="blog-card__link">Read article →</a>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <a href="../index.html" class="nav__logo">jams<span>.</span></a>
+          <p class="footer__tagline">Premium digital products for designers and developers.</p>
+        </div>
+        <nav class="footer__nav" aria-label="Footer navigation">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="../products.html">All products</a></li>
+            <li><a href="../products.html?filter=html">HTML Templates</a></li>
+            <li><a href="../products.html?filter=notion">Notion Templates</a></li>
+            <li><a href="../products.html?filter=cursor">Cursor Rules</a></li>
+          </ul>
+        </nav>
+        <nav class="footer__social" aria-label="Links">
+          <h4>More</h4>
+          <ul>
+            <li><a href="index.html">Blog</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="https://nathiellegouvea.gumroad.com" target="_blank" rel="noopener">Gumroad shop</a></li>
+            <li><a href="#">Twitter / X</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 jams.zone. All rights reserved.</p>
+        <p class="footer__made">Made with <span class="heart">♥</span> and AI</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../main.js"></script>
+</body>
+</html>

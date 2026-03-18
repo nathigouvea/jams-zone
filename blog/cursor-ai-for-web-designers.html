@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How to Use Cursor AI as a Web Designer: A Practical Guide for 2026 – jams.zone</title>
+  <meta name="description" content="Learn how web designers can use Cursor AI to build faster, write better code, and ship more projects with less effort. A practical guide with real examples."/>
+  <meta property="og:title" content="How to Use Cursor AI as a Web Designer"/>
+  <meta property="og:description" content="A practical guide for designers who want to use Cursor AI to build faster and ship more."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../style.css"/>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-logo">jams<span class="logo-dot">.</span></a>
+      <div class="nav-links">
+        <a href="../products.html">Products</a>
+        <a href="index.html">Blog</a>
+        <a href="../about.html">About</a>
+      </div>
+      <div class="nav-actions">
+        <a href="../products.html" class="btn btn-primary">Browse products</a>
+      </div>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+    <div class="nav-mobile">
+      <a href="../products.html">Products</a>
+      <a href="index.html">Blog</a>
+      <a href="../about.html">About</a>
+    </div>
+  </nav>
+
+  <main>
+    <article class="blog-post">
+      <div class="blog-post-header">
+        <div class="container">
+          <div class="blog-meta"><span class="blog-tag">AI Tools</span><span class="blog-date">March 17, 2026</span><span class="blog-read">8 min read</span></div>
+          <h1>How to Use Cursor AI as a Web Designer: A Practical Guide for 2026</h1>
+          <p class="blog-lead">Cursor AI has quietly become the most powerful tool in a web designer's arsenal. Here's how to actually use it — not just install it and forget it.</p>
+        </div>
+      </div>
+
+      <div class="blog-post-body">
+        <div class="container prose">
+
+          <p>If you're a web designer who writes code, there's a before and after Cursor. Before: you spent 40% of your time on boilerplate, repetitive patterns, and debugging CSS quirks. After: you describe what you want, review what you get, and ship in half the time.</p>
+
+          <p>I've been using Cursor daily for six months building HTML templates, Next.js projects, and client websites. This is the guide I wish I'd had when I started.</p>
+
+          <h2>What is Cursor AI and why should designers care?</h2>
+
+          <p>Cursor is a code editor built on VS Code, but with AI deeply integrated throughout. It's not a plugin or a copilot bolted on — the AI is the editor. You can:</p>
+
+          <ul>
+            <li>Chat with your codebase ("why is this div overflowing on mobile?")</li>
+            <li>Select any code and ask for changes in plain English</li>
+            <li>Generate entire components, pages, or stylesheets from a description</li>
+            <li>Automatically fix errors the moment they appear</li>
+          </ul>
+
+          <p>For designers who code, this removes the friction between "I can picture it" and "it exists on screen." You stay in design thinking mode instead of getting pulled into debugging mode.</p>
+
+          <h2>Setting up Cursor for design projects</h2>
+
+          <p>The default setup is good, but there are a few things that make a big difference for designers specifically:</p>
+
+          <p><strong>1. Use Claude Sonnet as your model.</strong> For frontend work — HTML, CSS, Tailwind, React components — Claude produces cleaner, more readable code than GPT models. Switch to it in Cursor's model settings.</p>
+
+          <p><strong>2. Create a .cursorrules file.</strong> This is the single most impactful thing you can do. A .cursorrules file tells Cursor exactly how you want it to code. Without it, you'll spend time correcting style inconsistencies. With it, every suggestion matches your standards automatically.</p>
+
+          <p><strong>3. Open your whole project, not just individual files.</strong> Cursor gets much better when it can see your entire codebase. It understands your design system, your component patterns, and your naming conventions.</p>
+
+          <h2>Writing effective .cursorrules files</h2>
+
+          <p>A .cursorrules file lives in your project root and contains plain English instructions for Cursor. Think of it as a style guide your AI will actually follow.</p>
+
+          <p>A basic one for HTML/CSS projects might look like:</p>
+
+          <pre><code># My design rules
+- Use semantic HTML: nav, main, section, article, footer
+- Mobile-first CSS, then add desktop breakpoints
+- No inline styles
+- Use CSS custom properties for colors and spacing
+- Alt text on every image
+- Inter font from Google Fonts</code></pre>
+
+          <p>The more specific you are, the better the output. Include your preferred class naming patterns, your spacing scale, your color tokens. The AI will follow them consistently.</p>
+
+          <p>Our <a href="https://nathiellegouvea.gumroad.com/l/prisma-saas-template">Cursor Rules Pack</a> includes four ready-made .cursorrules files for different project types: Next.js + Tailwind, Framer Motion, design systems, and WordPress.</p>
+
+          <h2>Real workflow: from idea to deployed page</h2>
+
+          <p>Here's exactly how I built our Prisma SaaS template using Cursor:</p>
+
+          <p><strong>Step 1: Start with structure.</strong> I opened a new HTML file and described the page sections I wanted. "Create a SaaS landing page with a sticky nav, hero section with gradient headline, 6-feature grid, 3-tier pricing, and a dark CTA banner." Cursor generated a full skeleton in about 20 seconds.</p>
+
+          <p><strong>Step 2: Style section by section.</strong> I selected the hero HTML and asked "make this visually impressive — large bold headline, gradient text effect, two CTA buttons, floating card visual on the right side." I reviewed the output, tweaked a few values, and moved on.</p>
+
+          <p><strong>Step 3: Fix responsiveness with AI.</strong> Instead of manually writing media queries, I'd select a section and say "make this fully responsive for 320px through 1440px using mobile-first CSS." Done in seconds.</p>
+
+          <p><strong>Step 4: Polish and ship.</strong> Final pass: "review this page for accessibility issues, missing alt text, and semantic HTML problems." Cursor finds things you'd miss.</p>
+
+          <p>Total time for a full landing page from scratch: 3-4 hours instead of 2-3 days.</p>
+
+          <h2>Common mistakes to avoid</h2>
+
+          <p><strong>Accepting output without reading it.</strong> Cursor is fast but not perfect. Always read the code before moving on. It occasionally adds inline styles, uses wrong semantic elements, or misses a responsive edge case. Your job shifts from writing to reviewing.</p>
+
+          <p><strong>Asking vague questions.</strong> "Make it better" produces mediocre results. "Increase the line-height on body text to 1.7, reduce the heading font weight to 700, and add 8px more padding to the section" produces exactly what you want.</p>
+
+          <p><strong>Not using .cursorrules.</strong> Every hour you spend without it means fixing inconsistencies by hand. Set it up on day one.</p>
+
+          <p><strong>Letting AI choose your design decisions.</strong> Use Cursor for implementation, not design thinking. You decide the visual direction. Cursor executes it.</p>
+
+          <h2>Tools that pair well with Cursor</h2>
+
+          <ul>
+            <li><strong>Figma</strong> — design first, then use Cursor to build it</li>
+            <li><strong>Netlify / Vercel</strong> — deploy what you build instantly</li>
+            <li><strong>Tailwind CSS</strong> — Cursor is exceptional with Tailwind</li>
+            <li><strong>Claude.ai</strong> — for longer thinking tasks, copywriting, planning</li>
+          </ul>
+
+          <h2>Is Cursor worth the cost?</h2>
+
+          <p>The paid plan is $20/month. If you build one client project faster per month — even saving just 4 hours — it pays for itself many times over. For building and selling templates, it's non-negotiable.</p>
+
+          <p>The free plan is quite generous for getting started. Try it for a week on a real project before committing.</p>
+
+          <h2>Getting started today</h2>
+
+          <p>Download Cursor at cursor.com. Install it, open any project, and try one thing: select a CSS file, press Cmd+K, and type "make this fully responsive." Watch what happens.</p>
+
+          <p>If you want a head start with pre-built rules, our <strong>Cursor Rules Pack</strong> gives you four polished .cursorrules files for the most common design/dev workflows — available on <a href="https://nathiellegouvea.gumroad.com">our Gumroad</a>.</p>
+
+          <div class="blog-cta-box">
+            <h3>Cursor Rules Pack</h3>
+            <p>4 ready-made .cursorrules files for web designers. Next.js, Framer Motion, design systems, and WordPress. €19.</p>
+            <a href="https://nathiellegouvea.gumroad.com" class="btn btn-primary">Get the pack →</a>
+          </div>
+
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="../index.html" class="nav-logo footer-logo">jams<span class="logo-dot">.</span></a>
+        <p class="footer-tagline">Premium digital products for designers and developers.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col"><h4>Products</h4><a href="../products.html">All products</a><a href="https://nathiellegouvea.gumroad.com">Gumroad shop</a></div>
+        <div class="footer-col"><h4>Content</h4><a href="index.html">Blog</a><a href="../about.html">About</a></div>
+        <div class="footer-col"><h4>Contact</h4><a href="mailto:hello@jams.zone">hello@jams.zone</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 jams.zone · Made with ♥ and Cursor AI in Porto, Portugal</p></div>
+  </footer>
+  <script src="../main.js" defer></script>
+</body>
+</html>

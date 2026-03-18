@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Products — jams.zone</title>
+  <meta name="description" content="Browse all premium digital products from jams.zone — HTML templates, Notion dashboards, Cursor rules, and UI kits. Priced fairly, built with care." />
+  <meta property="og:title" content="All Products — jams.zone" />
+  <meta property="og:description" content="Browse HTML templates, Notion dashboards, Cursor rules, and UI kits from jams.zone." />
+  <meta property="og:image" content="https://jams.zone/og-image.png" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://jams.zone/products.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <div class="nav__inner">
+          <a href="index.html" class="nav__logo">jams<span>.</span></a>
+          <div class="nav__links">
+            <a href="products.html" class="active">Products</a>
+            <a href="blog/index.html">Blog</a>
+            <a href="#">About</a>
+          </div>
+          <a href="products.html" class="btn btn-primary btn-sm nav__cta">Browse products</a>
+          <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+    <nav class="nav__mobile" aria-label="Mobile navigation">
+      <a href="products.html">Products</a>
+      <a href="blog/index.html">Blog</a>
+      <a href="#">About</a>
+      <a href="products.html" class="btn btn-primary btn-sm" style="width:fit-content">Browse products</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-label="Products header">
+      <div class="container">
+        <h1>All products</h1>
+        <p>Everything we make. Templates, dashboards, rules, kits. Updated regularly.</p>
+      </div>
+    </section>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar" role="toolbar" aria-label="Filter products">
+      <div class="container">
+        <ul class="filter-bar__list">
+          <li><button class="filter-btn active" data-filter="all">All</button></li>
+          <li><button class="filter-btn" data-filter="html">HTML Templates</button></li>
+          <li><button class="filter-btn" data-filter="notion">Notion Templates</button></li>
+          <li><button class="filter-btn" data-filter="cursor">Cursor Rules</button></li>
+          <li><button class="filter-btn" data-filter="coming">Coming soon</button></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PRODUCTS GRID -->
+    <section class="products-section" aria-label="Products catalog">
+      <div class="container">
+        <div class="products-grid">
+
+          <!-- Prisma SaaS Template -->
+          <article class="product-card" data-category="html">
+            <div class="product-card__preview preview-prisma">
+              <span class="product-card__preview-label">⟨/⟩ HTML Template</span>
+            </div>
+            <div class="product-card__body">
+              <div class="product-card__meta">
+                <span class="product-card__category">HTML Template</span>
+                <span class="product-card__price">€29</span>
+              </div>
+              <h2 class="product-card__title">Prisma SaaS Template</h2>
+              <p class="product-card__desc">A dark, polished landing page built for SaaS and tech products. Pure HTML and CSS — no frameworks, no JavaScript dependencies. Easy to customise and fast to load. Includes hero, features, pricing, FAQ, and CTA sections.</p>
+              <div class="product-card__footer">
+                <a href="https://nathiellegouvea.gumroad.com/l/prisma-saas-template" class="product-card__link" target="_blank" rel="noopener">Get it →</a>
+                <span class="badge badge-accent">Popular</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Noir Studio Agency Template -->
+          <article class="product-card" data-category="html">
+            <div class="product-card__preview preview-noir">
+              <span class="product-card__preview-label">⟨/⟩ HTML Template</span>
+            </div>
+            <div class="product-card__body">
+              <div class="product-card__meta">
+                <span class="product-card__category">HTML Template</span>
+                <span class="product-card__price">€29</span>
+              </div>
+              <h2 class="product-card__title">Noir Studio Agency Template</h2>
+              <p class="product-card__desc">Bold, minimal, and unapologetically black. Built for creative studios, design agencies, and freelancers who want their site to make a statement. Zero fluff, maximum impact.</p>
+              <div class="product-card__footer">
+                <a href="https://nathiellegouvea.gumroad.com/l/nkvlpz" class="product-card__link" target="_blank" rel="noopener">Get it →</a>
+                <span class="badge badge-muted">New</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Freelancer OS Notion -->
+          <article class="product-card coming-soon" data-category="coming">
+            <div class="product-card__preview preview-notion">
+              <span class="product-card__preview-label">📋 Notion Template</span>
+            </div>
+            <div class="product-card__body">
+              <div class="product-card__meta">
+                <span class="product-card__category">Notion Template</span>
+                <span class="product-card__price coming">Coming soon</span>
+              </div>
+              <h2 class="product-card__title">Freelancer OS Notion Dashboard</h2>
+              <p class="product-card__desc">Your entire freelance business in one workspace. Track clients, projects, invoices, time, and goals — all connected with relational databases. Built for solo operators who want clarity without complexity.</p>
+              <div class="product-card__footer">
+                <span class="product-card__link">Get it →</span>
+                <span class="badge badge-coming">€15</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Cursor Rules Pack -->
+          <article class="product-card coming-soon" data-category="coming">
+            <div class="product-card__preview preview-cursor">
+              <span class="product-card__preview-label">🤖 Cursor Rules</span>
+            </div>
+            <div class="product-card__body">
+              <div class="product-card__meta">
+                <span class="product-card__category">Cursor Rules</span>
+                <span class="product-card__price coming">Coming soon</span>
+              </div>
+              <h2 class="product-card__title">Cursor Rules Pack</h2>
+              <p class="product-card__desc">A curated collection of Cursor AI rules for web designers and front-end developers. Write smarter prompts, generate better code, and keep your AI context clean. Covers HTML, CSS, React, Tailwind, and accessibility best practices.</p>
+              <div class="product-card__footer">
+                <span class="product-card__link">Get it →</span>
+                <span class="badge badge-coming">€19</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Creator Notion Kit (placeholder) -->
+          <article class="product-card coming-soon" data-category="coming">
+            <div class="product-card__preview" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%);">
+              <span class="product-card__preview-label" style="color:#15803d;">📋 Notion Template</span>
+            </div>
+            <div class="product-card__body">
+              <div class="product-card__meta">
+                <span class="product-card__category">Notion Template</span>
+                <span class="product-card__price coming">Coming soon</span>
+              </div>
+              <h2 class="product-card__title">Creator OS Notion Dashboard</h2>
+              <p class="product-card__desc">Content planning, brand partnerships, earnings tracker, and publishing calendar — all in one Notion workspace built for digital creators and indie makers.</p>
+              <div class="product-card__footer">
+                <span class="product-card__link">Get it →</span>
+                <span class="badge badge-coming">€19</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Design System Starter (placeholder) -->
+          <article class="product-card coming-soon" data-category="coming">
+            <div class="product-card__preview" style="background: linear-gradient(135deg, #fdf4ff 0%, #f5d0fe 50%, #e879f9 30%, #a21caf 100%);">
+              <span class="product-card__preview-label" style="color:#fff;">🎨 UI Kit</span>
+            </div>
+            <div class="product-card__body">
+              <div class="product-card__meta">
+                <span class="product-card__category">UI Kit</span>
+                <span class="product-card__price coming">Coming soon</span>
+              </div>
+              <h2 class="product-card__title">Figma Design System Starter</h2>
+              <p class="product-card__desc">A production-ready Figma component library with variables, auto-layout, and dark mode. Start your next project with a solid foundation instead of starting from scratch.</p>
+              <div class="product-card__footer">
+                <span class="product-card__link">Get it →</span>
+                <span class="badge badge-coming">€39</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Newsletter nudge -->
+        <div style="margin-top: var(--space-16);">
+          <div class="newsletter-box">
+            <h2>New products, first.</h2>
+            <p>Subscribe and get notified when new templates drop — plus occasional free stuff.</p>
+            <form class="newsletter-form" novalidate>
+              <input type="email" placeholder="your@email.com" required aria-label="Email address" />
+              <button type="submit" class="btn">Notify me →</button>
+            </form>
+            <p class="newsletter-success">🎉 You're in! We'll ping you when new stuff drops.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <a href="index.html" class="nav__logo">jams<span>.</span></a>
+          <p class="footer__tagline">Premium digital products for designers and developers.</p>
+        </div>
+        <nav class="footer__nav" aria-label="Footer navigation">
+          <h4>Products</h4>
+          <ul>
+            <li><a href="products.html">All products</a></li>
+            <li><a href="products.html?filter=html">HTML Templates</a></li>
+            <li><a href="products.html?filter=notion">Notion Templates</a></li>
+            <li><a href="products.html?filter=cursor">Cursor Rules</a></li>
+          </ul>
+        </nav>
+        <nav class="footer__social" aria-label="Links">
+          <h4>More</h4>
+          <ul>
+            <li><a href="blog/index.html">Blog</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="https://nathiellegouvea.gumroad.com" target="_blank" rel="noopener">Gumroad shop</a></li>
+            <li><a href="#">Twitter / X</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 jams.zone. All rights reserved.</p>
+        <p class="footer__made">Made with <span class="heart">♥</span> and AI</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

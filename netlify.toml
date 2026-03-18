@@ -1,0 +1,12 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+[forms]
+  [forms.notifications]
+    email = "lumorastudio.hello1@gmail.com"
