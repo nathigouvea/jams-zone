@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurelius Timepieces — Time, Perfected.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #000000;
+    --black2: #050505;
+    --dark: #0c0c0c;
+    --card: #111111;
+    --gold: #c9a86c;
+    --gold-light: #e2c99a;
+    --gold-dark: #9a7a3e;
+    --white: #ffffff;
+    --gray: #666666;
+    --gray-light: #999999;
+    --border: rgba(201,168,108,0.15);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: 'Jost', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 80px; height: 72px;
+    background: rgba(0,0,0,0.92); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; letter-spacing: 6px; text-transform: uppercase; color: var(--gold-light); }
+  .nav-links { display: flex; gap: 44px; list-style: none; }
+  .nav-links a { color: var(--gray-light); text-decoration: none; font-size: 12px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-actions { display: flex; gap: 24px; align-items: center; }
+  .nav-icon { color: var(--gray-light); font-size: 18px; cursor: pointer; transition: color 0.2s; }
+  .nav-icon:hover { color: var(--gold); }
+  .nav-btn {
+    background: transparent; color: var(--gold); border: 1px solid var(--gold);
+    padding: 8px 24px; font-size: 11px; font-weight: 500; letter-spacing: 3px;
+    text-transform: uppercase; text-decoration: none; transition: all 0.3s;
+  }
+  .nav-btn:hover { background: var(--gold); color: var(--black); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden; background: var(--black);
+  }
+  .hero-left {
+    flex: 1; padding: 120px 80px; display: flex; flex-direction: column; justify-content: center;
+  }
+  .hero-right {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    padding: 120px 80px 80px 0; position: relative;
+  }
+  .hero-eyebrow { font-size: 11px; font-weight: 400; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 110px; line-height: 0.9; font-weight: 300;
+    color: var(--white); margin-bottom: 12px; letter-spacing: -2px;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-light); display: block; }
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 22px; color: var(--gold); margin: 24px 0 40px; letter-spacing: 1px;
+  }
+  .hero-line { width: 60px; height: 1px; background: var(--gold); margin-bottom: 28px; opacity: 0.5; }
+  .hero-desc { font-size: 15px; color: var(--gray-light); line-height: 1.9; max-width: 400px; margin-bottom: 48px; font-weight: 300; }
+  .hero-cta { display: flex; gap: 24px; align-items: center; }
+  .btn-primary-gold {
+    background: var(--gold); color: var(--black);
+    padding: 14px 40px; font-size: 11px; font-weight: 500; letter-spacing: 3px;
+    text-transform: uppercase; text-decoration: none; transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-primary-gold:hover { background: var(--gold-light); }
+  .btn-text-gold { font-size: 12px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); text-decoration: none; display: flex; align-items: center; gap: 8px; transition: gap 0.2s; }
+  .btn-text-gold:hover { gap: 16px; }
+
+  /* WATCH FACE CSS ART */
+  .watch-container {
+    position: relative; width: 340px; height: 340px;
+  }
+  .watch-glow {
+    position: absolute; inset: -60px;
+    background: radial-gradient(circle, rgba(201,168,108,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: glow-pulse 4s ease-in-out infinite;
+  }
+  @keyframes glow-pulse { 0%, 100% { opacity: 0.6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
+  .watch-face {
+    width: 340px; height: 340px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #1a1a1a 0%, #050505 100%);
+    border: 2px solid rgba(201,168,108,0.4);
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.8), 0 0 80px rgba(201,168,108,0.1);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 1;
+  }
+  .watch-inner {
+    width: 280px; height: 280px; border-radius: 50%;
+    border: 1px solid rgba(201,168,108,0.1);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .watch-center-mark { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; position: relative; z-index: 10; }
+  .watch-brand-text {
+    position: absolute; top: 30%; left: 50%; transform: translateX(-50%);
+    font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 5px;
+    color: var(--gold); text-transform: uppercase; white-space: nowrap;
+  }
+  .watch-model-text {
+    position: absolute; top: 40%; left: 50%; transform: translateX(-50%);
+    font-size: 9px; letter-spacing: 4px; color: var(--gray); text-transform: uppercase; white-space: nowrap;
+  }
+  .watch-hour-marker {
+    position: absolute; width: 2px; height: 14px; background: var(--gold);
+    border-radius: 1px; top: 12px; left: 50%; transform-origin: 50% 128px;
+    margin-left: -1px;
+  }
+  .watch-minute-marker {
+    position: absolute; width: 1px; height: 8px; background: var(--gray);
+    border-radius: 1px; top: 16px; left: 50%; transform-origin: 50% 124px;
+    margin-left: -0.5px;
+  }
+  .watch-hand-hour {
+    position: absolute; width: 3px; height: 80px; background: var(--white);
+    border-radius: 3px; bottom: 50%; left: 50%; transform-origin: 50% 100%;
+    margin-left: -1.5px; transform: rotate(90deg);
+  }
+  .watch-hand-minute {
+    position: absolute; width: 2px; height: 110px; background: var(--white);
+    border-radius: 2px; bottom: 50%; left: 50%; transform-origin: 50% 100%;
+    margin-left: -1px; transform: rotate(180deg);
+  }
+  .watch-hand-second {
+    position: absolute; width: 1px; height: 120px; background: var(--gold);
+    border-radius: 1px; bottom: 50%; left: 50%; transform-origin: 50% 80%;
+    margin-left: -0.5px; transform: rotate(270deg);
+  }
+  .crown {
+    position: absolute; right: -16px; top: 50%; transform: translateY(-50%);
+    width: 20px; height: 28px; background: var(--gold-dark);
+    border-radius: 3px; z-index: 0;
+  }
+  .strap-top, .strap-bottom {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    width: 130px; background: linear-gradient(to bottom, #1a0a00, #2d1505);
+    border-left: 1px solid rgba(201,168,108,0.2); border-right: 1px solid rgba(201,168,108,0.2);
+  }
+  .strap-top { top: -100px; height: 100px; border-radius: 8px 8px 0 0; }
+  .strap-bottom { bottom: -100px; height: 100px; border-radius: 0 0 8px 8px; }
+
+  /* COLLECTIONS */
+  .collections { padding: 120px 80px; background: var(--dark); }
+  .coll-header { text-align: center; margin-bottom: 80px; }
+  .coll-header .eyebrow { font-size: 11px; font-weight: 400; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .coll-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 300; color: var(--white); letter-spacing: -1px; }
+  .coll-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .coll-card {
+    background: var(--black2); padding: 60px 40px;
+    transition: all 0.4s; cursor: pointer; text-align: center;
+    border: 1px solid transparent; position: relative; overflow: hidden;
+  }
+  .coll-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0); transition: transform 0.4s;
+  }
+  .coll-card:hover { border-color: var(--border); }
+  .coll-card:hover::before { transform: scaleX(1); }
+  .coll-icon { font-size: 64px; margin-bottom: 32px; display: block; filter: drop-shadow(0 0 30px rgba(201,168,108,0.3)); }
+  .coll-name { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; color: var(--white); margin-bottom: 12px; letter-spacing: 1px; }
+  .coll-sub { font-size: 11px; font-weight: 400; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .coll-desc { font-size: 14px; color: var(--gray-light); line-height: 1.8; margin-bottom: 32px; font-weight: 300; }
+  .coll-price { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 500; color: var(--gold-light); margin-bottom: 28px; }
+  .coll-price .from { font-size: 13px; font-weight: 300; color: var(--gray); font-family: 'Jost', sans-serif; display: block; letter-spacing: 1px; }
+  .coll-btn { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(201,168,108,0.3); padding-bottom: 4px; transition: all 0.2s; }
+  .coll-btn:hover { border-color: var(--gold); }
+
+  /* PHILOSOPHY */
+  .philosophy { padding: 120px 80px; background: var(--black); display: flex; gap: 120px; align-items: center; }
+  .phil-text { flex: 1; }
+  .phil-text .eyebrow { font-size: 11px; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+  .phil-text h2 { font-family: 'Cormorant Garamond', serif; font-size: 68px; font-weight: 300; line-height: 1.05; margin-bottom: 28px; }
+  .phil-text p { font-size: 16px; color: var(--gray-light); line-height: 1.9; font-weight: 300; }
+  .phil-stats { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .phil-stat { border-top: 1px solid var(--border); padding-top: 28px; }
+  .phil-stat .num { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; color: var(--gold-light); line-height: 1; }
+  .phil-stat .lbl { font-size: 12px; color: var(--gray); letter-spacing: 2px; text-transform: uppercase; margin-top: 8px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark); padding: 60px 80px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .f-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; letter-spacing: 6px; text-transform: uppercase; color: var(--gold-light); }
+  footer p { font-size: 12px; color: var(--gray); letter-spacing: 1px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Aurelius</div>
+  <ul class="nav-links">
+    <li><a href="#">Collections</a></li>
+    <li><a href="#">Heritage</a></li>
+    <li><a href="#">Craft</a></li>
+    <li><a href="#">Boutiques</a></li>
+    <li><a href="#">Service</a></li>
+  </ul>
+  <div class="nav-actions">
+    <span class="nav-icon">🔍</span>
+    <a href="#" class="nav-btn">Explore</a>
+  </div>
+</nav>
+
+<section class="hero" style="display:flex;">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Swiss Haute Horlogerie · Since 1923</div>
+    <h1>Time,<em>Perfected.</em></h1>
+    <div class="hero-line"></div>
+    <p class="hero-desc">Each Aurelius timepiece is born from over three hundred hours of hand-craftsmanship in our Geneva atelier. Not a watch. A legacy you wear on your wrist.</p>
+    <div class="hero-cta">
+      <a href="#" class="btn-primary-gold">Discover Collections</a>
+      <a href="#" class="btn-text-gold">Watch the film →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="watch-container">
+      <div class="watch-glow"></div>
+      <div class="strap-top"></div>
+      <div class="watch-face">
+        <div class="crown"></div>
+        <div class="watch-inner">
+          <!-- Hour markers -->
+          <div class="watch-hour-marker" style="transform: rotate(0deg) translateX(-50%); left: 50%; transform-origin: bottom center; transform: rotate(0deg); top: 12px; left: calc(50% - 1px);"></div>
+          <div class="watch-hour-marker" style="position:absolute; top:12px; left:calc(50% - 1px); transform-origin:1px 128px; transform:rotate(30deg);"></div>
+          <div class="watch-hour-marker" style="position:absolute; top:12px; left:calc(50% - 1px); transform-origin:1px 128px; transform:rotate(60deg);"></div>
+          <div class="watch-hour-marker" style="position:absolute; top:12px; left:calc(50% - 1px); transform-origin:1px 128px; transform:rotate(90deg);"></div>
+          <div class="watch-hour-marker" style="position:absolute; top:12px; left:calc(50% - 1px); transform-origin:1px 128px; transform:rotate(120deg);"></div>
+          <div class="watch-hour-marker" style="position:absolute; top:12px; left:calc(50% - 1px); transform-origin:1px 128px; transform:rotate(150deg);"></div>
+          <div class="watch-hour-marker" style="position:absolute; top:12px; left:calc(50% - 1px); transform-origin:1px 128px; transform:rotate(180deg);"></div>
+          <div class="watch-hour-marker" style="position:absolute; top:12px; left:calc(50% - 1px); transform-origin:1px 128px; transform:rotate(210deg);"></div>
+          <div class="watch-hour-marker" style="position:absolute; top:12px; left:calc(50% - 1px); transform-origin:1px 128px; transform:rotate(240deg);"></div>
+          <div class="watch-hour-marker" style="position:absolute; top:12px; left:calc(50% - 1px); transform-origin:1px 128px; transform:rotate(270deg);"></div>
+          <div class="watch-hour-marker" style="position:absolute; top:12px; left:calc(50% - 1px); transform-origin:1px 128px; transform:rotate(300deg);"></div>
+          <div class="watch-hour-marker" style="position:absolute; top:12px; left:calc(50% - 1px); transform-origin:1px 128px; transform:rotate(330deg);"></div>
+          <div class="watch-brand-text">Aurelius</div>
+          <div class="watch-model-text">Genève · Swiss Made</div>
+          <div class="watch-hand-hour"></div>
+          <div class="watch-hand-minute"></div>
+          <div class="watch-hand-second"></div>
+          <div class="watch-center-mark"></div>
+        </div>
+      </div>
+      <div class="strap-bottom"></div>
+    </div>
+  </div>
+</section>
+
+<section class="collections">
+  <div class="coll-header">
+    <div class="eyebrow">Our Métiers</div>
+    <h2>Three Collections.<br>One Obsession.</h2>
+  </div>
+  <div class="coll-grid">
+    <div class="coll-card">
+      <span class="coll-icon">🕰️</span>
+      <div class="coll-name">Heritage</div>
+      <div class="coll-sub">Classic · Timeless</div>
+      <div class="coll-desc">Inspired by our 1923 founding piece, the Heritage line honours tradition with hand-guilloché dials and in-house calibres passed down through generations of watchmakers.</div>
+      <div class="coll-price"><span class="from">From</span>€ 1,200</div>
+      <a href="#" class="coll-btn">Explore Heritage →</a>
+    </div>
+    <div class="coll-card" style="border-color: var(--border);">
+      <span class="coll-icon">⌚</span>
+      <div class="coll-name">Sport</div>
+      <div class="coll-sub">Bold · Capable</div>
+      <div class="coll-desc">Water resistant to 300m, anti-magnetic to 15,000 gauss, and designed to accompany you from the boardroom to the deep sea. Luxury that dares to be worn.</div>
+      <div class="coll-price"><span class="from">From</span>€ 2,400</div>
+      <a href="#" class="coll-btn">Explore Sport →</a>
+    </div>
+    <div class="coll-card">
+      <span class="coll-icon">💫</span>
+      <div class="coll-name">Avant-Garde</div>
+      <div class="coll-sub">Rare · Visionary</div>
+      <div class="coll-desc">When convention fails imagination. Skeletonised movements, Grand Feu enamel dials, and complications that redraw the boundaries of what is possible on the wrist.</div>
+      <div class="coll-price"><span class="from">From</span>€ 4,500</div>
+      <a href="#" class="coll-btn">Explore Avant-Garde →</a>
+    </div>
+  </div>
+</section>
+
+<section class="philosophy">
+  <div class="phil-text">
+    <div class="eyebrow">Our Philosophy</div>
+    <h2>Made Slow.<br>Worn Forever.</h2>
+    <p>We have never rushed. Every movement is assembled by a single master watchmaker — one pair of hands, one timepiece, from first component to final beat. In a world of instant everything, Aurelius insists on patience.</p>
+  </div>
+  <div class="phil-stats">
+    <div class="phil-stat"><div class="num">300+</div><div class="lbl">Hours per timepiece</div></div>
+    <div class="phil-stat"><div class="num">1923</div><div class="lbl">Founded, Genève</div></div>
+    <div class="phil-stat"><div class="num">98%</div><div class="lbl">In-house components</div></div>
+    <div class="phil-stat"><div class="num">4 gen.</div><div class="lbl">Family-owned</div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">Aurelius</div>
+  <p>© 2026 Aurelius Timepieces S.A. · Geneva, Switzerland</p>
+  <p>Boutiques · Service · Contact</p>
+</footer>
+
+</body>
+</html>

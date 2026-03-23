@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Volta Athletics — Unleash Your Edge</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --black: #000000;
+    --white: #FFFFFF;
+    --lime: #CCFF00;
+  }
+  body { background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, transparent 100%);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px; letter-spacing: 4px; color: var(--lime);
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--white); text-decoration: none; font-size: 13px;
+    letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--lime); }
+  .nav-cta {
+    background: var(--lime); color: var(--black);
+    padding: 10px 24px; font-size: 13px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .nav-cta:hover { background: var(--white); transform: scale(1.04); }
+
+  /* HERO */
+  .hero {
+    position: relative; height: 100vh; min-height: 700px;
+    display: flex; align-items: flex-end; padding-bottom: 120px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600&h=900&q=85&fit=crop');
+    background-size: cover; background-position: center top;
+    filter: brightness(0.55);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, transparent 60%),
+                linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+  }
+  .hero-content {
+    position: relative; z-index: 2; padding: 0 48px;
+  }
+  .hero-eyebrow {
+    font-size: 13px; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--lime); font-weight: 700; margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 12vw, 160px);
+    line-height: 0.9; letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .hero-title span { color: var(--lime); }
+  .hero-sub {
+    margin-top: 28px; max-width: 480px; font-size: 16px; line-height: 1.7;
+    color: rgba(255,255,255,0.75);
+  }
+  .hero-btns { display: flex; gap: 16px; margin-top: 36px; align-items: center; }
+  .btn-primary {
+    background: var(--lime); color: var(--black);
+    padding: 16px 40px; font-size: 14px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; text-decoration: none;
+    display: inline-block; transition: transform 0.2s;
+  }
+  .btn-primary:hover { transform: scale(1.05); }
+  .btn-ghost {
+    color: var(--white); border: 2px solid rgba(255,255,255,0.4);
+    padding: 14px 36px; font-size: 14px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--lime); color: var(--lime); }
+
+  /* DIAGONAL DIVIDER via clip-path on ticker */
+  .diagonal-top {
+    height: 80px; background: var(--black);
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    margin-top: -80px; position: relative; z-index: 3;
+  }
+
+  /* MARQUEE TICKER */
+  .ticker-wrap {
+    background: var(--lime); overflow: hidden; padding: 14px 0;
+    position: relative; z-index: 4;
+  }
+  .ticker-track {
+    display: flex; width: max-content;
+    animation: marquee 18s linear infinite;
+  }
+  .ticker-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 4px; color: var(--black);
+    white-space: nowrap; padding: 0 40px;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* PRODUCTS */
+  .products {
+    background: var(--black); padding: 80px 48px;
+  }
+  .products-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 48px;
+  }
+  .products-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    letter-spacing: 4px; line-height: 1;
+  }
+  .products-title span { color: var(--lime); }
+  .see-all {
+    color: var(--lime); font-size: 13px; letter-spacing: 3px;
+    text-transform: uppercase; font-weight: 700; text-decoration: none;
+    border-bottom: 2px solid var(--lime); padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+  .see-all:hover { opacity: 0.7; }
+  .product-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  }
+  .product-card {
+    position: relative; overflow: hidden; cursor: pointer;
+    background: #111;
+  }
+  .product-card img {
+    width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block;
+    transition: transform 0.5s ease, filter 0.4s;
+    filter: grayscale(20%);
+  }
+  .product-card:hover img { transform: scale(1.06); filter: grayscale(0%) brightness(0.8); }
+  .product-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 28px 24px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+    transform: translateY(8px); transition: transform 0.3s;
+  }
+  .product-card:hover .product-info { transform: translateY(0); }
+  .product-tag {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--lime); font-weight: 700; margin-bottom: 6px;
+  }
+  .product-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px; letter-spacing: 3px;
+  }
+  .product-price {
+    font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.7);
+    margin-top: 4px;
+  }
+  .product-buy {
+    display: inline-block; margin-top: 12px;
+    background: var(--lime); color: var(--black);
+    padding: 8px 20px; font-size: 12px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity 0.3s 0.05s, transform 0.3s 0.05s;
+  }
+  .product-card:hover .product-buy { opacity: 1; transform: translateY(0); }
+
+  /* STATS BAND */
+  .stats-band {
+    background: #0a0a0a; border-top: 1px solid #222; border-bottom: 1px solid #222;
+    padding: 56px 48px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    text-align: center;
+  }
+  .stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px; color: var(--lime); letter-spacing: 2px;
+  }
+  .stat-label {
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); margin-top: 4px;
+  }
+
+  /* MANIFESTO */
+  .manifesto {
+    padding: 100px 48px; max-width: 900px; margin: 0 auto; text-align: center;
+  }
+  .manifesto-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 7vw, 96px); letter-spacing: 4px;
+    line-height: 0.95;
+  }
+  .manifesto-title em { color: var(--lime); font-style: normal; }
+  .manifesto-body {
+    margin-top: 32px; font-size: 18px; line-height: 1.8;
+    color: rgba(255,255,255,0.6); max-width: 600px; margin-left: auto; margin-right: auto;
+  }
+  .manifesto-cta { margin-top: 48px; }
+
+  /* FOOTER */
+  footer {
+    background: #050505; border-top: 1px solid #1a1a1a;
+    padding: 48px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px; letter-spacing: 6px; color: var(--lime);
+  }
+  .footer-links { display: flex; gap: 32px; }
+  .footer-links a {
+    color: rgba(255,255,255,0.4); font-size: 12px;
+    letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--lime); }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero-content { padding: 0 24px; }
+    .products { padding: 60px 24px; }
+    .product-grid { grid-template-columns: 1fr; }
+    .products-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .stats-band { grid-template-columns: repeat(2, 1fr); padding: 40px 24px; }
+    .manifesto { padding: 60px 24px; }
+    footer { flex-direction: column; gap: 24px; text-align: center; padding: 32px 24px; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">VOLTA</div>
+  <ul class="nav-links">
+    <li><a href="#">Collection</a></li>
+    <li><a href="#">Training</a></li>
+    <li><a href="#">Athletes</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <a href="#" class="nav-cta">Shop Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Spring / Summer 2026 Collection</p>
+    <h1 class="hero-title">NO<br><span>LIMITS</span><br>SET</h1>
+    <p class="hero-sub">Built for athletes who refuse to quit. Every stitch, every seam engineered for the moments that define you.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary">Shop Collection</a>
+      <a href="#" class="btn-ghost">Watch the Film</a>
+    </div>
+  </div>
+</section>
+
+<div class="diagonal-top"></div>
+
+<!-- MARQUEE TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">FREE SHIPPING ON ORDERS OVER €60</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">NEW COLLECTION JUST DROPPED</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">SHOP NOW — LIMITED STOCK</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">FREE RETURNS WITHIN 30 DAYS</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">FREE SHIPPING ON ORDERS OVER €60</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">NEW COLLECTION JUST DROPPED</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">SHOP NOW — LIMITED STOCK</span>
+    <span class="ticker-item">•</span>
+    <span class="ticker-item">FREE RETURNS WITHIN 30 DAYS</span>
+    <span class="ticker-item">•</span>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <div class="products-header">
+    <h2 class="products-title">FEATURED<br><span>DROPS</span></h2>
+    <a href="#" class="see-all">View All →</a>
+  </div>
+  <div class="product-grid">
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&h=600&q=80&fit=crop" alt="Volta Sprint Pro Shoes" loading="lazy">
+      <div class="product-info">
+        <p class="product-tag">Footwear</p>
+        <h3 class="product-name">Sprint Pro X</h3>
+        <p class="product-price">€ 149</p>
+        <a href="#" class="product-buy">Add to Cart</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1556906781-9a412961a28c?w=600&h=600&q=80&fit=crop" alt="Volta Stormtrack Jacket" loading="lazy">
+      <div class="product-info">
+        <p class="product-tag">Outerwear</p>
+        <h3 class="product-name">Stormtrack Jacket</h3>
+        <p class="product-price">€ 219</p>
+        <a href="#" class="product-buy">Add to Cart</a>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=600&h=600&q=80&fit=crop" alt="Volta Compression Tights" loading="lazy">
+      <div class="product-info">
+        <p class="product-tag">Bottoms</p>
+        <h3 class="product-name">Flux Tights</h3>
+        <p class="product-price">€ 89</p>
+        <a href="#" class="product-buy">Add to Cart</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div>
+    <div class="stat-val">2M+</div>
+    <div class="stat-label">Athletes Worldwide</div>
+  </div>
+  <div>
+    <div class="stat-val">38</div>
+    <div class="stat-label">Countries Shipped</div>
+  </div>
+  <div>
+    <div class="stat-val">100%</div>
+    <div class="stat-label">Recycled Fabrics</div>
+  </div>
+  <div>
+    <div class="stat-val">4.9★</div>
+    <div class="stat-label">Average Rating</div>
+  </div>
+</div>
+
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <h2 class="manifesto-title">MADE FOR<br><em>THOSE</em><br>WHO PUSH</h2>
+  <p class="manifesto-body">Volta was born in a garage, forged on the track. We don't make clothes for gym selfies — we make performance gear for athletes who leave everything on the road, the court, and the field.</p>
+  <div class="manifesto-cta">
+    <a href="#" class="btn-primary">Read Our Story</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">VOLTA</div>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">Strava</a>
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 Volta Athletics</div>
+</footer>
+
+</body>
+</html>

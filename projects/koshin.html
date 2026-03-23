@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kōshin Fitness Studio — Move With Intention</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --charcoal: #1A1A1A;
+    --charcoal-mid: #242424;
+    --charcoal-light: #2E2E2E;
+    --white: #FFFFFF;
+    --blue: #00B4FF;
+    --blue-dark: #0090CC;
+    --gold: #FFD700;
+    --text-muted: rgba(255,255,255,0.5);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--charcoal); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px; height: 72px;
+    background: rgba(26,26,26,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--text-muted); text-decoration: none; font-size: 13px;
+    letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-join {
+    background: var(--blue); color: var(--charcoal);
+    padding: 10px 24px; font-size: 13px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+    border-radius: 4px; transition: background 0.2s, transform 0.2s;
+  }
+  .nav-join:hover { background: var(--blue-dark); transform: translateY(-1px); }
+
+  /* HERO — SPLIT */
+  .hero {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 72px); margin-top: 72px;
+    overflow: hidden;
+  }
+  .hero-left {
+    background: var(--charcoal);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 64px;
+    position: relative; overflow: hidden;
+  }
+  .hero-left::before {
+    content: 'KŌ'; position: absolute; bottom: -20px; left: -20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 320px; font-weight: 900; color: rgba(255,255,255,0.025);
+    line-height: 1; pointer-events: none; user-select: none;
+  }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--blue); font-weight: 700; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 32px; height: 2px; background: var(--blue);
+  }
+  .hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(60px, 8vw, 100px); font-weight: 900;
+    text-transform: uppercase; line-height: 0.9; letter-spacing: 2px;
+    position: relative; z-index: 1;
+  }
+  .hero-title em { color: var(--blue); font-style: italic; display: block; }
+  .hero-sub {
+    margin-top: 28px; font-size: 16px; line-height: 1.8; font-weight: 300;
+    color: var(--text-muted); max-width: 400px; position: relative; z-index: 1;
+  }
+  .hero-actions { display: flex; gap: 16px; margin-top: 40px; position: relative; z-index: 1; }
+  .btn-blue {
+    background: var(--blue); color: var(--charcoal);
+    padding: 16px 36px; font-size: 13px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; text-decoration: none;
+    border-radius: 4px; transition: background 0.2s, transform 0.2s;
+  }
+  .btn-blue:hover { background: var(--blue-dark); transform: translateY(-2px); }
+  .btn-outline {
+    color: var(--white); border: 2px solid rgba(255,255,255,0.2);
+    padding: 14px 32px; font-size: 13px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; text-decoration: none;
+    border-radius: 4px; transition: border-color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+  .hero-numbers {
+    display: flex; gap: 40px; margin-top: 56px; position: relative; z-index: 1;
+    padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .hero-num-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 36px; font-weight: 800; color: var(--white);
+  }
+  .hero-num-val span { color: var(--blue); }
+  .hero-num-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-top: 2px; }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+  }
+  .hero-right img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+    display: block; filter: brightness(0.75);
+  }
+  .hero-right-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, var(--charcoal) 0%, transparent 20%),
+                linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 40%);
+  }
+  .hero-right-badge {
+    position: absolute; bottom: 32px; right: 32px;
+    background: rgba(0,180,255,0.15); border: 1px solid rgba(0,180,255,0.35);
+    backdrop-filter: blur(12px); padding: 16px 24px; border-radius: 12px;
+    text-align: center;
+  }
+  .badge-val { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 800; color: var(--blue); }
+  .badge-label { font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+
+  /* MARQUEE */
+  .classes-marquee {
+    background: var(--blue); overflow: hidden; padding: 12px 0;
+  }
+  .marquee-track {
+    display: flex; width: max-content;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-item {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px; font-weight: 700; letter-spacing: 3px;
+    color: var(--charcoal); white-space: nowrap; padding: 0 32px;
+    text-transform: uppercase;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* CLASSES */
+  .classes { padding: 80px 56px; }
+  .classes-header { text-align: center; margin-bottom: 56px; }
+  .classes-eyebrow {
+    font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--blue); font-weight: 700; margin-bottom: 16px;
+  }
+  .classes-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(40px, 6vw, 72px); font-weight: 900;
+    text-transform: uppercase; letter-spacing: 3px;
+  }
+  .classes-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .class-card {
+    position: relative; overflow: hidden; border-radius: 8px;
+    cursor: pointer;
+  }
+  .class-card img {
+    width: 100%; aspect-ratio: 10/7; object-fit: cover; display: block;
+    transition: transform 0.5s;
+  }
+  .class-card:hover img { transform: scale(1.06); }
+  .class-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,26,26,0.95) 0%, rgba(26,26,26,0.2) 60%, transparent 100%);
+  }
+  .class-info {
+    position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 24px;
+  }
+  .class-level {
+    display: inline-block; background: var(--blue);
+    color: var(--charcoal); font-size: 10px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 3px; margin-bottom: 10px;
+  }
+  .class-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .class-duration { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+  .class-arrow {
+    position: absolute; top: 20px; right: 20px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%; width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; opacity: 0; transition: opacity 0.3s;
+  }
+  .class-card:hover .class-arrow { opacity: 1; }
+
+  /* PRICING */
+  .pricing {
+    background: var(--charcoal-mid); padding: 80px 56px;
+    border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .pricing-header { text-align: center; margin-bottom: 56px; }
+  .pricing-eyebrow {
+    font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--blue); font-weight: 700; margin-bottom: 16px;
+  }
+  .pricing-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(36px, 5vw, 64px); font-weight: 900;
+    text-transform: uppercase; letter-spacing: 3px;
+  }
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto;
+  }
+  .price-card {
+    background: var(--charcoal-light); border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px; padding: 36px; transition: transform 0.3s, border-color 0.3s;
+  }
+  .price-card:hover { transform: translateY(-4px); border-color: rgba(0,180,255,0.25); }
+  .price-card.featured {
+    background: var(--blue); border-color: var(--blue);
+    position: relative; transform: scale(1.04);
+  }
+  .price-card.featured .price-name, .price-card.featured .price-amount,
+  .price-card.featured .price-period, .price-card.featured .price-feature { color: var(--charcoal); }
+  .featured-tag {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--charcoal); font-size: 11px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; padding: 4px 16px; border-radius: 20px;
+  }
+  .price-name { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 20px; }
+  .price-amount {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 60px; font-weight: 900; line-height: 1; color: var(--white);
+  }
+  .price-period { font-size: 14px; color: var(--text-muted); margin-bottom: 32px; }
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .price-feature { font-size: 14px; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
+  .price-feature::before { content: '✓'; color: var(--blue); font-weight: 700; }
+  .price-card.featured .price-feature::before { color: var(--charcoal); }
+  .btn-price {
+    display: block; text-align: center; padding: 14px;
+    font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none; border-radius: 6px;
+    background: rgba(255,255,255,0.08); color: var(--white);
+    transition: background 0.2s;
+  }
+  .btn-price:hover { background: rgba(255,255,255,0.15); }
+  .price-card.featured .btn-price {
+    background: var(--charcoal); color: var(--white);
+  }
+  .price-card.featured .btn-price:hover { background: rgba(26,26,26,0.8); }
+
+  /* FOOTER */
+  footer {
+    background: #111; padding: 40px 56px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 24px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase;
+  }
+  .footer-logo span { color: var(--blue); }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 12px; color: var(--text-muted); text-decoration: none; letter-spacing: 2px; text-transform: uppercase; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--blue); }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 56px 24px; }
+    .hero-right { height: 280px; }
+    .classes { padding: 60px 24px; }
+    .classes-grid { grid-template-columns: 1fr; }
+    .pricing { padding: 60px 24px; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .price-card.featured { transform: scale(1); }
+    footer { flex-direction: column; gap: 24px; text-align: center; padding: 32px 24px; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">KŌ<span>SHIN</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Classes</a></li>
+    <li><a href="#">Schedule</a></li>
+    <li><a href="#">Coaches</a></li>
+    <li><a href="#">Nutrition</a></li>
+  </ul>
+  <a href="#" class="nav-join">Join Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Premium Boutique Fitness</p>
+    <h1 class="hero-title">MOVE<br>WITH<br><em>INTENTION</em></h1>
+    <p class="hero-sub">Where Japanese discipline meets cutting-edge training science. Every session is engineered to take you further than you thought possible.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-blue">Start Free Trial</a>
+      <a href="#" class="btn-outline">View Classes</a>
+    </div>
+    <div class="hero-numbers">
+      <div>
+        <div class="hero-num-val">12<span>+</span></div>
+        <div class="hero-num-label">Class Types</div>
+      </div>
+      <div>
+        <div class="hero-num-val">8<span>+</span></div>
+        <div class="hero-num-label">Elite Coaches</div>
+      </div>
+      <div>
+        <div class="hero-num-val">4.9<span>★</span></div>
+        <div class="hero-num-label">Member Rating</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=900&q=85&fit=crop" alt="Premium gym interior at Kōshin" loading="lazy">
+    <div class="hero-right-overlay"></div>
+    <div class="hero-right-badge">
+      <div class="badge-val">6AM</div>
+      <div class="badge-label">First class daily</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="classes-marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Yoga Flow</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">HIIT Circuit</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">Strength & Conditioning</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">Breathwork</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">Pilates Core</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">Martial Arts</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">Yoga Flow</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">HIIT Circuit</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">Strength & Conditioning</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">Breathwork</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">Pilates Core</span>
+    <span class="marquee-item">·</span>
+    <span class="marquee-item">Martial Arts</span>
+    <span class="marquee-item">·</span>
+  </div>
+</div>
+
+<!-- CLASSES -->
+<section class="classes">
+  <div class="classes-header">
+    <p class="classes-eyebrow">Our Disciplines</p>
+    <h2 class="classes-title">Find Your Practice</h2>
+  </div>
+  <div class="classes-grid">
+    <div class="class-card">
+      <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=500&h=350&q=80&fit=crop" alt="Yoga Flow class" loading="lazy">
+      <div class="class-overlay"></div>
+      <div class="class-info">
+        <span class="class-level">All Levels</span>
+        <h3 class="class-name">Yoga Flow</h3>
+        <p class="class-duration">60 min · Daily 7AM & 6PM</p>
+      </div>
+      <div class="class-arrow">→</div>
+    </div>
+    <div class="class-card">
+      <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=500&h=350&q=80&fit=crop" alt="HIIT Circuit class" loading="lazy">
+      <div class="class-overlay"></div>
+      <div class="class-info">
+        <span class="class-level">Intermediate</span>
+        <h3 class="class-name">HIIT Circuit</h3>
+        <p class="class-duration">45 min · Mon / Wed / Fri</p>
+      </div>
+      <div class="class-arrow">→</div>
+    </div>
+    <div class="class-card">
+      <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=500&h=350&q=80&fit=crop" alt="Strength and conditioning class" loading="lazy">
+      <div class="class-overlay"></div>
+      <div class="class-info">
+        <span class="class-level">Advanced</span>
+        <h3 class="class-name">Strength & Power</h3>
+        <p class="class-duration">75 min · Tue / Thu / Sat</p>
+      </div>
+      <div class="class-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="pricing-header">
+    <p class="pricing-eyebrow">Membership</p>
+    <h2 class="pricing-title">Invest in Your Best Self</h2>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-name">Foundation</div>
+      <div class="price-amount">€49</div>
+      <div class="price-period">/ month</div>
+      <ul class="price-features">
+        <li class="price-feature">8 classes per month</li>
+        <li class="price-feature">App access</li>
+        <li class="price-feature">Locker access</li>
+        <li class="price-feature">Monthly check-in</li>
+      </ul>
+      <a href="#" class="btn-price">Get Started</a>
+    </div>
+    <div class="price-card featured">
+      <div class="featured-tag">Most Popular</div>
+      <div class="price-name">Unlimited</div>
+      <div class="price-amount">€89</div>
+      <div class="price-period">/ month</div>
+      <ul class="price-features">
+        <li class="price-feature">Unlimited classes</li>
+        <li class="price-feature">Personal coach session</li>
+        <li class="price-feature">Nutrition guidance</li>
+        <li class="price-feature">Guest passes ×2</li>
+      </ul>
+      <a href="#" class="btn-price">Join Now</a>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Elite</div>
+      <div class="price-amount">€149</div>
+      <div class="price-period">/ month</div>
+      <ul class="price-features">
+        <li class="price-feature">Everything in Unlimited</li>
+        <li class="price-feature">4× private sessions</li>
+        <li class="price-feature">Recovery & spa access</li>
+        <li class="price-feature">Priority booking</li>
+      </ul>
+      <a href="#" class="btn-price">Go Elite</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">KŌ<span>SHIN</span></div>
+  <div class="footer-links">
+    <a href="#">Classes</a>
+    <a href="#">Schedule</a>
+    <a href="#">Coaches</a>
+    <a href="#">Instagram</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 Kōshin Studio</div>
+</footer>
+
+</body>
+</html>

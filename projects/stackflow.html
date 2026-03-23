@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackflow — Ship Faster. Scale Smarter.</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --white: #FFFFFF;
+    --black: #0F0F0F;
+    --indigo: #4F46E5;
+    --indigo-light: #6366F1;
+    --grey: #F4F4F5;
+    --grey-mid: #E4E4E7;
+    --text-muted: #71717A;
+  }
+  body { background: var(--white); color: var(--black); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 64px;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--grey-mid);
+  }
+  .nav-logo {
+    font-size: 20px; font-weight: 800; letter-spacing: -0.5px;
+    background: linear-gradient(135deg, var(--indigo) 0%, #818CF8 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--text-muted); text-decoration: none; font-size: 14px;
+    font-weight: 500; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--black); }
+  .nav-actions { display: flex; gap: 12px; align-items: center; }
+  .btn-nav-ghost {
+    color: var(--black); font-size: 14px; font-weight: 600; text-decoration: none;
+    padding: 8px 16px; border: 1px solid var(--grey-mid); border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .btn-nav-ghost:hover { background: var(--grey); }
+  .btn-nav-solid {
+    background: var(--indigo); color: var(--white); font-size: 14px; font-weight: 600;
+    text-decoration: none; padding: 8px 18px; border-radius: 8px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-nav-solid:hover { background: var(--indigo-light); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 64px;
+    padding: 80px 48px 60px; max-width: 1280px; margin: 0 auto;
+    min-height: calc(100vh - 64px);
+  }
+  .hero-left {}
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(79,70,229,0.08); border: 1px solid rgba(79,70,229,0.2);
+    padding: 6px 14px; border-radius: 999px; font-size: 13px; font-weight: 600;
+    color: var(--indigo); margin-bottom: 28px;
+  }
+  .hero-badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--indigo); animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+  .hero-title {
+    font-size: clamp(40px, 4.5vw, 64px); font-weight: 800;
+    line-height: 1.08; letter-spacing: -2px; color: var(--black);
+  }
+  .hero-title .accent { color: var(--indigo); }
+  .hero-sub {
+    margin-top: 20px; font-size: 17px; line-height: 1.75; font-weight: 300;
+    color: var(--text-muted); max-width: 440px;
+  }
+  .hero-actions { display: flex; gap: 12px; align-items: center; margin-top: 36px; flex-wrap: wrap; }
+  .btn-hero {
+    background: var(--indigo); color: var(--white); font-size: 15px; font-weight: 600;
+    text-decoration: none; padding: 14px 28px; border-radius: 10px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px rgba(79,70,229,0.35);
+  }
+  .btn-hero:hover { background: var(--indigo-light); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(79,70,229,0.45); }
+  .btn-hero-outline {
+    color: var(--black); font-size: 15px; font-weight: 600;
+    text-decoration: none; padding: 14px 28px; border-radius: 10px;
+    border: 1.5px solid var(--grey-mid); transition: border-color 0.2s, transform 0.2s;
+  }
+  .btn-hero-outline:hover { border-color: var(--indigo); color: var(--indigo); transform: translateY(-1px); }
+  .hero-social-proof {
+    display: flex; align-items: center; gap: 12px; margin-top: 36px;
+  }
+  .avatar-stack { display: flex; }
+  .avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 2px solid var(--white); margin-left: -8px;
+    object-fit: cover; display: block;
+  }
+  .avatar:first-child { margin-left: 0; }
+  .social-text { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+  .social-text strong { color: var(--black); }
+
+  /* LAPTOP MOCKUP */
+  .hero-right { display: flex; justify-content: center; align-items: center; }
+  .laptop-wrap {
+    position: relative; width: 100%; max-width: 560px;
+  }
+  .laptop-body {
+    background: #1E1E2E;
+    border-radius: 12px 12px 0 0;
+    padding: 8px 8px 0;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.22), 0 8px 24px rgba(0,0,0,0.12);
+    position: relative;
+  }
+  .laptop-camera {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #3A3A4A; margin: 0 auto 6px;
+  }
+  .laptop-screen {
+    border-radius: 6px 6px 0 0; overflow: hidden;
+    border: 3px solid #2A2A3E;
+    position: relative;
+  }
+  .laptop-screen img {
+    width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover;
+  }
+  /* Animated gradient border */
+  .laptop-screen::before {
+    content: '';
+    position: absolute; inset: -3px; border-radius: 8px;
+    background: linear-gradient(90deg, #4F46E5, #818CF8, #A5B4FC, #4F46E5);
+    background-size: 300% 100%;
+    animation: gradientBorder 3s linear infinite;
+    z-index: -1;
+  }
+  @keyframes gradientBorder {
+    from { background-position: 0% 0%; }
+    to { background-position: 300% 0%; }
+  }
+  .laptop-base {
+    background: linear-gradient(to bottom, #2A2A3E, #1A1A28);
+    height: 18px; border-radius: 0 0 4px 4px;
+    position: relative;
+  }
+  .laptop-base::after {
+    content: '';
+    position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);
+    width: 45%; height: 12px; background: #151520; border-radius: 0 0 8px 8px;
+  }
+  .laptop-footer { height: 12px; }
+
+  /* LOGOS STRIP */
+  .logos-strip {
+    padding: 40px 48px; background: var(--grey); border-top: 1px solid var(--grey-mid); border-bottom: 1px solid var(--grey-mid);
+    text-align: center;
+  }
+  .logos-label {
+    font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 24px;
+  }
+  .logos-row { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; align-items: center; }
+  .logo-placeholder {
+    font-size: 18px; font-weight: 700; color: #D4D4D8; letter-spacing: -0.5px;
+  }
+
+  /* BENTO GRID */
+  .features {
+    padding: 96px 48px; max-width: 1280px; margin: 0 auto;
+  }
+  .features-header { text-align: center; margin-bottom: 56px; }
+  .features-eyebrow {
+    font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--indigo); margin-bottom: 12px;
+  }
+  .features-title {
+    font-size: clamp(32px, 4vw, 52px); font-weight: 800;
+    letter-spacing: -1.5px; line-height: 1.1;
+  }
+  .features-sub {
+    margin-top: 16px; font-size: 17px; color: var(--text-muted); font-weight: 300;
+    max-width: 480px; margin-left: auto; margin-right: auto;
+  }
+  .bento {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  }
+  .bento-card {
+    background: var(--grey); border: 1px solid var(--grey-mid);
+    border-radius: 16px; padding: 36px;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  }
+  .bento-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+    border-color: rgba(79,70,229,0.25);
+  }
+  .bento-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--indigo) 0%, #818CF8 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 20px;
+  }
+  .bento-title {
+    font-size: 20px; font-weight: 700; letter-spacing: -0.4px; margin-bottom: 10px;
+  }
+  .bento-desc {
+    font-size: 15px; line-height: 1.7; color: var(--text-muted); font-weight: 400;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    margin: 0 48px 80px; border-radius: 20px; overflow: hidden;
+    background: linear-gradient(135deg, var(--black) 0%, #1E1B4B 60%, var(--black) 100%);
+    padding: 80px 64px; text-align: center; position: relative;
+  }
+  .cta-glow {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 500px; height: 300px; border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(79,70,229,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-section h2 {
+    position: relative; z-index: 1;
+    font-size: clamp(32px, 4vw, 52px); font-weight: 800;
+    letter-spacing: -1.5px; color: var(--white); line-height: 1.1;
+  }
+  .cta-section p {
+    position: relative; z-index: 1;
+    margin-top: 16px; font-size: 17px; color: rgba(255,255,255,0.6);
+    font-weight: 300; max-width: 400px; margin-left: auto; margin-right: auto;
+  }
+  .cta-actions { position: relative; z-index: 1; margin-top: 36px; display: flex; justify-content: center; gap: 16px; }
+  .btn-cta {
+    background: var(--white); color: var(--black);
+    font-size: 15px; font-weight: 700; padding: 14px 32px; border-radius: 10px;
+    text-decoration: none; transition: transform 0.2s;
+  }
+  .btn-cta:hover { transform: scale(1.04); }
+
+  /* FOOTER */
+  footer {
+    background: var(--grey); border-top: 1px solid var(--grey-mid);
+    padding: 32px 48px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo { font-size: 18px; font-weight: 800; color: var(--black); letter-spacing: -0.5px; }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--black); }
+  .footer-copy { font-size: 13px; color: #A1A1AA; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 48px 24px; gap: 40px; min-height: auto; }
+    .features { padding: 60px 24px; }
+    .bento { grid-template-columns: 1fr; }
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .cta-section { margin: 0 24px 60px; padding: 48px 32px; }
+    footer { flex-direction: column; gap: 20px; padding: 24px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+    .logos-strip { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Stackflow</div>
+  <ul class="nav-links">
+    <li><a href="#">Product</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">Docs</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="#" class="btn-nav-ghost">Sign in</a>
+    <a href="#" class="btn-nav-solid">Start free →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Now in public beta — free for teams of 5
+    </div>
+    <h1 class="hero-title">Build products<br><span class="accent">10× faster</span><br>as a team.</h1>
+    <p class="hero-sub">Stackflow connects your code, tasks, and docs in one intelligent workspace. Your team will wonder how they ever shipped without it.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-hero">Start building free →</a>
+      <a href="#" class="btn-hero-outline">Watch demo</a>
+    </div>
+    <div class="hero-social-proof">
+      <div class="avatar-stack">
+        <img class="avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=64&h=64&fit=crop&crop=face" alt="User avatar" loading="lazy">
+        <img class="avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&h=64&fit=crop&crop=face" alt="User avatar" loading="lazy">
+        <img class="avatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face" alt="User avatar" loading="lazy">
+        <img class="avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=face" alt="User avatar" loading="lazy">
+      </div>
+      <p class="social-text">Loved by <strong>12,000+</strong> engineers worldwide</p>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="laptop-wrap">
+      <div class="laptop-body">
+        <div class="laptop-camera"></div>
+        <div class="laptop-screen">
+          <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&h=700&q=85&fit=crop" alt="Stackflow dashboard screenshot" loading="lazy">
+        </div>
+        <div class="laptop-base"></div>
+      </div>
+      <div class="laptop-footer"></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS STRIP -->
+<div class="logos-strip">
+  <p class="logos-label">Trusted by teams at</p>
+  <div class="logos-row">
+    <span class="logo-placeholder">Stripe</span>
+    <span class="logo-placeholder">Vercel</span>
+    <span class="logo-placeholder">Linear</span>
+    <span class="logo-placeholder">Notion</span>
+    <span class="logo-placeholder">Figma</span>
+    <span class="logo-placeholder">Loom</span>
+  </div>
+</div>
+
+<!-- BENTO FEATURES -->
+<section class="features">
+  <div class="features-header">
+    <p class="features-eyebrow">Everything you need</p>
+    <h2 class="features-title">One workspace.<br>Zero context switching.</h2>
+    <p class="features-sub">Stackflow brings together every tool your engineering team lives in — so you can focus on building.</p>
+  </div>
+  <div class="bento">
+    <div class="bento-card">
+      <div class="bento-icon">⚡</div>
+      <h3 class="bento-title">Blazing Fast Issue Tracking</h3>
+      <p class="bento-desc">Create, assign, and close issues in seconds. Our command palette lives at your fingertips — keyboard-first by design, because your hands never leave the keyboard anyway.</p>
+    </div>
+    <div class="bento-card">
+      <div class="bento-icon">🔗</div>
+      <h3 class="bento-title">Deep Git Integration</h3>
+      <p class="bento-desc">Issues auto-close when PRs merge. Branches link to tasks. Your commits have context. Finally, your project management tool that actually understands how engineers work.</p>
+    </div>
+    <div class="bento-card">
+      <div class="bento-icon">🤖</div>
+      <h3 class="bento-title">AI-Powered Summaries</h3>
+      <p class="bento-desc">Missed standup? Stackflow AI catches you up in 30 seconds. Summarizes pull requests, highlights blockers, and drafts your weekly engineering report automatically.</p>
+    </div>
+    <div class="bento-card">
+      <div class="bento-icon">📊</div>
+      <h3 class="bento-title">Real-Time Team Analytics</h3>
+      <p class="bento-desc">Understand where your team spends time, spot bottlenecks before they become crises, and ship with confidence. Metrics your manager will actually ask to see.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-section">
+  <div class="cta-glow"></div>
+  <h2>Your team deserves better tools.</h2>
+  <p>Set up in 5 minutes. Cancel anytime. No credit card required to start.</p>
+  <div class="cta-actions">
+    <a href="#" class="btn-cta">Get started free →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Stackflow</div>
+  <div class="footer-links">
+    <a href="#">Product</a>
+    <a href="#">Changelog</a>
+    <a href="#">Docs</a>
+    <a href="#">Privacy</a>
+    <a href="#">Twitter</a>
+  </div>
+  <div class="footer-copy">© 2026 Stackflow, Inc.</div>
+</footer>
+
+</body>
+</html>

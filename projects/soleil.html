@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soleil Pâtisserie — Artisan Boulangerie, Paris</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,500;1,600;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --cream: #FFF9F0;
+    --blush: #F9C5C5;
+    --blush-light: #FDEAEA;
+    --rose: #C17B7B;
+    --rose-dark: #9E5B5B;
+    --gold: #D4A843;
+    --gold-light: #E8C067;
+    --text: #3D2B2B;
+    --text-muted: #8A6A6A;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--text); font-family: 'Lato', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px; height: 72px;
+    background: rgba(255,249,240,0.95); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(209,168,67,0.2);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-style: italic; font-weight: 700;
+    color: var(--text);
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--text-muted); text-decoration: none; font-size: 13px;
+    letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-order {
+    background: var(--gold); color: var(--cream);
+    padding: 10px 24px; font-size: 13px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+    border-radius: 4px; transition: background 0.2s, transform 0.2s;
+  }
+  .nav-order:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    position: relative; height: 100vh; min-height: 700px;
+    display: flex; align-items: flex-end;
+    padding-bottom: 80px;
+    margin-top: 72px; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=1600&h=900&q=85&fit=crop');
+    background-size: cover; background-position: center;
+    filter: brightness(0.7) saturate(1.1);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(61,43,43,0.8) 0%, rgba(61,43,43,0.1) 60%, transparent 100%),
+                linear-gradient(to right, rgba(61,43,43,0.5) 0%, transparent 60%);
+  }
+  .hero-content { position: relative; z-index: 2; padding: 0 64px; max-width: 700px; }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: 6px; text-transform: uppercase;
+    color: var(--gold-light); font-weight: 700; margin-bottom: 20px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 100px); font-style: italic;
+    line-height: 0.95; font-weight: 700; color: var(--cream);
+  }
+  .hero-title span { color: var(--blush); }
+  .hero-sub {
+    margin-top: 24px; font-size: 17px; line-height: 1.8; font-weight: 300;
+    color: rgba(255,249,240,0.8); max-width: 460px;
+  }
+  .hero-btns { display: flex; gap: 16px; margin-top: 36px; }
+  .btn-cream {
+    background: var(--cream); color: var(--text);
+    padding: 15px 36px; font-size: 13px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; text-decoration: none;
+    border-radius: 4px; transition: background 0.2s, transform 0.2s;
+  }
+  .btn-cream:hover { background: var(--blush-light); transform: translateY(-2px); }
+  .btn-ghost-light {
+    color: var(--cream); border: 1.5px solid rgba(255,249,240,0.4);
+    padding: 14px 32px; font-size: 13px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; text-decoration: none;
+    border-radius: 4px; transition: border-color 0.2s;
+  }
+  .btn-ghost-light:hover { border-color: var(--blush); color: var(--blush); }
+
+  /* INTRO STRIP */
+  .intro-strip {
+    background: var(--blush-light); border-top: 1px solid rgba(193,123,123,0.2); border-bottom: 1px solid rgba(193,123,123,0.2);
+    padding: 40px 56px; text-align: center;
+  }
+  .intro-tagline {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 22px; color: var(--text-muted); letter-spacing: 1px;
+  }
+  .intro-tagline strong { color: var(--rose); font-style: italic; }
+
+  /* PRODUCTS */
+  .products { padding: 80px 56px; }
+  .products-header { text-align: center; margin-bottom: 56px; }
+  .products-eyebrow {
+    font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--rose); font-weight: 700; margin-bottom: 16px;
+  }
+  .products-title {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: clamp(36px, 5vw, 60px); color: var(--text);
+  }
+  .products-sub { margin-top: 12px; font-size: 15px; color: var(--text-muted); font-weight: 300; }
+
+  /* ASYMMETRIC GRID */
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .prod-card {
+    position: relative; overflow: hidden; border-radius: 16px;
+    background: var(--cream); cursor: pointer;
+    box-shadow: 0 4px 20px rgba(61,43,43,0.08);
+    transition: transform 0.4s, box-shadow 0.4s;
+  }
+  .prod-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(61,43,43,0.14); }
+  .prod-card-tall { grid-row: 1 / 3; }
+  .prod-card img {
+    width: 100%; object-fit: cover; display: block;
+    transition: transform 0.5s;
+  }
+  .prod-card-tall img { height: 680px; }
+  .prod-card:not(.prod-card-tall) img { height: 320px; }
+  .prod-card:hover img { transform: scale(1.04); }
+  .prod-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(61,43,43,0.85) 0%, transparent 55%);
+  }
+  .prod-info {
+    position: absolute; bottom: 0; left: 0; right: 0; padding: 28px;
+  }
+  .prod-tag {
+    display: inline-block;
+    background: rgba(249,197,197,0.9); color: var(--rose-dark);
+    font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 20px; margin-bottom: 10px;
+  }
+  .prod-name {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 26px; color: var(--cream);
+  }
+  .prod-price { font-size: 16px; font-weight: 700; color: var(--blush); margin-top: 4px; }
+  .prod-btn {
+    display: inline-block; margin-top: 14px;
+    background: var(--gold); color: var(--cream);
+    padding: 10px 24px; font-size: 12px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; text-decoration: none;
+    border-radius: 4px; opacity: 0; transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .prod-card:hover .prod-btn { opacity: 1; transform: translateY(0); }
+
+  /* VALUES */
+  .values {
+    background: var(--blush-light); padding: 80px 56px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px;
+    border-top: 1px solid rgba(193,123,123,0.2); border-bottom: 1px solid rgba(193,123,123,0.2);
+  }
+  .value { text-align: center; }
+  .value-icon { font-size: 36px; margin-bottom: 16px; }
+  .value-title {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 22px; color: var(--text); margin-bottom: 12px;
+  }
+  .value-text { font-size: 14px; line-height: 1.8; color: var(--text-muted); font-weight: 300; }
+
+  /* CTA / PRE-ORDER */
+  .preorder {
+    padding: 96px 56px; text-align: center;
+    background: linear-gradient(135deg, var(--rose) 0%, var(--rose-dark) 100%);
+    position: relative; overflow: hidden;
+  }
+  .preorder::before {
+    content: '❀'; position: absolute; top: 20px; left: 60px;
+    font-size: 120px; opacity: 0.08; pointer-events: none;
+  }
+  .preorder::after {
+    content: '✿'; position: absolute; bottom: 20px; right: 60px;
+    font-size: 100px; opacity: 0.08; pointer-events: none;
+  }
+  .preorder h2 {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: clamp(40px, 6vw, 72px); color: var(--cream); font-weight: 700;
+    position: relative; z-index: 1;
+  }
+  .preorder p {
+    margin-top: 16px; font-size: 17px; color: rgba(255,249,240,0.8); font-weight: 300;
+    max-width: 480px; margin-left: auto; margin-right: auto;
+    position: relative; z-index: 1;
+  }
+  .preorder-form {
+    display: flex; gap: 0; max-width: 440px; margin: 40px auto 0;
+    border-radius: 8px; overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    position: relative; z-index: 1;
+  }
+  .preorder-input {
+    flex: 1; border: none; padding: 16px 20px; font-size: 15px;
+    font-family: 'Lato', sans-serif; background: var(--cream); color: var(--text);
+    outline: none;
+  }
+  .preorder-input::placeholder { color: var(--text-muted); }
+  .preorder-submit {
+    background: var(--gold); color: var(--cream); border: none;
+    padding: 16px 28px; font-size: 13px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .preorder-submit:hover { background: var(--gold-light); }
+
+  /* FOOTER */
+  footer {
+    background: var(--text); padding: 40px 56px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 22px; color: var(--gold);
+  }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 12px; color: rgba(255,249,240,0.4); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { font-size: 12px; color: rgba(255,249,240,0.25); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero-content { padding: 0 24px; }
+    .products { padding: 60px 24px; }
+    .products-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .prod-card-tall { grid-row: auto; }
+    .prod-card-tall img { height: 320px; }
+    .intro-strip { padding: 32px 24px; }
+    .values { grid-template-columns: 1fr; padding: 60px 24px; }
+    .preorder { padding: 60px 24px; }
+    .preorder-form { flex-direction: column; }
+    footer { flex-direction: column; gap: 24px; text-align: center; padding: 32px 24px; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Soleil <span>Pâtisserie</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Menu</a></li>
+    <li><a href="#">Seasonal</a></li>
+    <li><a href="#">Catering</a></li>
+    <li><a href="#">Our Story</a></li>
+  </ul>
+  <a href="#" class="nav-order">Order Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Artisan · Paris · Since 2006</p>
+    <h1 class="hero-title">Made with love,<br><span>one pastry</span><br>at a time.</h1>
+    <p class="hero-sub">Each morning before sunrise, our bakers craft by hand the flavours that have defined Soleil for two decades. No shortcuts. No compromise.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-cream">Shop Our Menu</a>
+      <a href="#" class="btn-ghost-light">Our Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+  <p class="intro-tagline">"Every pastry holds a story — <strong>we invite you into ours.</strong>"</p>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <div class="products-header">
+    <p class="products-eyebrow">This Season's Collection</p>
+    <h2 class="products-title">The Art of the Patisserie</h2>
+    <p class="products-sub">Crafted in small batches, available Wednesday through Sunday.</p>
+  </div>
+  <div class="products-grid">
+    <!-- TALL CARD -->
+    <div class="prod-card prod-card-tall">
+      <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&h=500&q=80&fit=crop" alt="Signature Croissant au Beurre" loading="lazy">
+      <div class="prod-overlay"></div>
+      <div class="prod-info">
+        <span class="prod-tag">Signature</span>
+        <h3 class="prod-name">Croissant au Beurre</h3>
+        <p class="prod-price">€ 4.50</p>
+        <a href="#" class="prod-btn">Add to Order</a>
+      </div>
+    </div>
+    <!-- STACKED CARDS -->
+    <div class="prod-card">
+      <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=500&h=500&q=80&fit=crop" alt="Rose & Raspberry Tart" loading="lazy">
+      <div class="prod-overlay"></div>
+      <div class="prod-info">
+        <span class="prod-tag">Seasonal</span>
+        <h3 class="prod-name">Tarte Rose & Framboise</h3>
+        <p class="prod-price">€ 7.80</p>
+        <a href="#" class="prod-btn">Add to Order</a>
+      </div>
+    </div>
+    <div class="prod-card">
+      <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=500&h=500&q=80&fit=crop" alt="Mille-Feuille Vanille" loading="lazy">
+      <div class="prod-overlay"></div>
+      <div class="prod-info">
+        <span class="prod-tag">Classic</span>
+        <h3 class="prod-name">Mille-Feuille Vanille</h3>
+        <p class="prod-price">€ 8.50</p>
+        <a href="#" class="prod-btn">Add to Order</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="value">
+    <div class="value-icon">🧈</div>
+    <h3 class="value-title">Finest Ingredients</h3>
+    <p class="value-text">We source only AOP-certified butter, single-origin chocolate, and fresh seasonal fruit from trusted Normandy farms.</p>
+  </div>
+  <div class="value">
+    <div class="value-icon">🥐</div>
+    <h3 class="value-title">Made Before Dawn</h3>
+    <p class="value-text">Our bakers begin at 3AM so that every pastry reaches you at the peak of freshness — never more than a few hours old.</p>
+  </div>
+  <div class="value">
+    <div class="value-icon">🌹</div>
+    <h3 class="value-title">Handcrafted with Care</h3>
+    <p class="value-text">Every laminated dough, piped choux, and glazed tart is shaped entirely by hand. There are no machines in our heart.</p>
+  </div>
+</section>
+
+<!-- PRE-ORDER CTA -->
+<section class="preorder">
+  <h2>Sunday brunch deserves Soleil.</h2>
+  <p>Pre-order by Friday evening and collect fresh Saturday or Sunday morning. Free delivery in Paris 6ème.</p>
+  <form class="preorder-form" onsubmit="return false;">
+    <input class="preorder-input" type="email" placeholder="Your email address" />
+    <button class="preorder-submit" type="submit">Pre-order →</button>
+  </form>
+</section>
+
+<footer>
+  <div class="footer-logo">Soleil Pâtisserie</div>
+  <div class="footer-links">
+    <a href="#">Menu</a>
+    <a href="#">Catering</a>
+    <a href="#">Press</a>
+    <a href="#">Instagram</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 Soleil Pâtisserie · Paris</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mira Health — Your Health, Simplified</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --white: #ffffff;
+    --bg: #FFFFFF;
+    --bg2: #F8FAFC;
+    --card: #ffffff;
+    --teal: #0D9488;
+    --teal-light: #14b8a6;
+    --teal-pale: #ccfbf1;
+    --violet: #7C3AED;
+    --violet-light: #8b5cf6;
+    --violet-pale: #ede9fe;
+    --text: #0f172a;
+    --text2: #334155;
+    --gray: #64748b;
+    --border: #e2e8f0;
+  }
+  body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 80px; height: 72px;
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 800; color: var(--text); }
+  .logo-mark {
+    width: 34px; height: 34px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--teal-light), var(--violet-light));
+    display: flex; align-items: center; justify-content: center; font-size: 18px;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: var(--gray); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-actions { display: flex; gap: 12px; align-items: center; }
+  .btn-nav-ghost { background: transparent; color: var(--text); padding: 9px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--border); transition: all 0.2s; }
+  .btn-nav-ghost:hover { border-color: var(--teal); color: var(--teal); }
+  .btn-nav-teal { background: linear-gradient(135deg, var(--teal), var(--teal-light)); color: var(--white); padding: 9px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+  .btn-nav-teal:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; padding: 140px 80px 80px;
+    display: flex; gap: 80px; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse at 70% 30%, rgba(20,184,166,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 30% 70%, rgba(139,92,246,0.07) 0%, transparent 50%);
+  }
+  .hero-content { flex: 1; z-index: 1; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--teal-pale); border: 1px solid rgba(20,184,166,0.3);
+    padding: 6px 16px; border-radius: 100px; margin-bottom: 28px;
+    font-size: 13px; font-weight: 600; color: var(--teal);
+  }
+  .hero h1 {
+    font-size: 76px; font-weight: 800; line-height: 1.0; letter-spacing: -2px;
+    margin-bottom: 24px; color: var(--text);
+  }
+  .hero h1 .gradient {
+    background: linear-gradient(135deg, var(--teal-light) 0%, var(--violet-light) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .hero p { font-size: 19px; color: var(--gray); line-height: 1.7; margin-bottom: 44px; max-width: 500px; font-weight: 400; }
+  .waitlist-form { display: flex; gap: 0; max-width: 440px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(13,148,136,0.15); }
+  .waitlist-form input { flex: 1; padding: 15px 20px; border: 1.5px solid var(--border); border-right: none; background: var(--white); font-size: 14px; color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; outline: none; border-radius: 12px 0 0 12px; }
+  .waitlist-form input::placeholder { color: var(--gray); }
+  .waitlist-form button { background: linear-gradient(135deg, var(--teal), var(--violet-light)); color: var(--white); border: none; padding: 15px 24px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: opacity 0.2s; white-space: nowrap; border-radius: 0 12px 12px 0; }
+  .waitlist-form button:hover { opacity: 0.9; }
+  .hero-social { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
+  .avatars { display: flex; }
+  .avatar { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--white); margin-right: -8px; font-size: 14px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--teal-pale), var(--violet-pale)); }
+  .hero-social p { font-size: 13px; color: var(--gray); }
+  .hero-social strong { color: var(--text); }
+
+  /* PHONE MOCKUP */
+  .hero-visual { flex: 0 0 360px; z-index: 1; display: flex; justify-content: center; }
+  .phone-frame {
+    width: 300px; height: 580px; background: linear-gradient(160deg, #1a1a2e, #16213e);
+    border-radius: 44px; padding: 16px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.1), inset 0 0 0 1px rgba(255,255,255,0.05);
+    position: relative;
+  }
+  .phone-notch { width: 90px; height: 26px; background: #0a0a0a; border-radius: 16px; margin: 0 auto 16px; }
+  .phone-screen { height: 100%; border-radius: 32px; overflow: hidden; padding: 0 0 16px; display: flex; flex-direction: column; gap: 12px; }
+  .phone-header { display: flex; justify-content: space-between; align-items: center; padding: 0 16px; }
+  .phone-time { font-size: 28px; font-weight: 700; color: var(--white); }
+  .phone-date { font-size: 11px; color: rgba(255,255,255,0.5); }
+  .phone-greeting { padding: 0 16px; }
+  .phone-greeting h4 { font-size: 14px; font-weight: 600; color: var(--white); }
+  .phone-greeting p { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+  .phone-card {
+    background: rgba(255,255,255,0.08); border-radius: 16px; padding: 16px; margin: 0 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .phone-card .card-label { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.5); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+  .phone-card .card-value { font-size: 32px; font-weight: 800; color: var(--white); }
+  .phone-card .card-unit { font-size: 14px; color: rgba(255,255,255,0.5); }
+  .phone-card .card-trend { font-size: 12px; color: var(--teal-light); margin-top: 4px; }
+  .ring-container { display: flex; justify-content: center; align-items: center; gap: 20px; padding: 0 16px; }
+  .ring { position: relative; width: 80px; height: 80px; }
+  .ring svg { transform: rotate(-90deg); }
+  .ring-circle { fill: none; stroke-width: 8; }
+  .ring-bg { stroke: rgba(255,255,255,0.08); }
+  .ring-fg { stroke-linecap: round; transition: stroke-dashoffset 1s; }
+  .ring-label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .ring-label .val { font-size: 14px; font-weight: 800; color: var(--white); }
+  .ring-label .lbl { font-size: 8px; color: rgba(255,255,255,0.5); }
+  .phone-mini-cards { display: flex; gap: 8px; padding: 0 16px; }
+  .mini-card { flex: 1; background: rgba(255,255,255,0.06); border-radius: 12px; padding: 12px; border: 1px solid rgba(255,255,255,0.05); }
+  .mini-card .icon { font-size: 20px; margin-bottom: 6px; display: block; }
+  .mini-card .val { font-size: 16px; font-weight: 700; color: var(--white); }
+  .mini-card .lbl { font-size: 9px; color: rgba(255,255,255,0.4); }
+
+  /* FEATURES */
+  .features { padding: 100px 80px; background: var(--bg2); }
+  .feat-top { text-align: center; margin-bottom: 64px; }
+  .feat-chip { display: inline-block; background: var(--teal-pale); color: var(--teal); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; margin-bottom: 20px; }
+  .feat-top h2 { font-size: 52px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; }
+  .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .feat-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 20px;
+    padding: 40px 36px; transition: all 0.3s;
+  }
+  .feat-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(13,148,136,0.1); border-color: var(--teal-light); }
+  .feat-icon-wrap {
+    width: 60px; height: 60px; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; margin-bottom: 24px;
+  }
+  .feat-icon-wrap.teal { background: var(--teal-pale); }
+  .feat-icon-wrap.violet { background: var(--violet-pale); }
+  .feat-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+  .feat-card p { font-size: 15px; color: var(--gray); line-height: 1.7; }
+
+  /* CTA */
+  .cta-section {
+    padding: 100px 80px; background: linear-gradient(135deg, var(--teal), var(--violet));
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: ''; position: absolute; top: -100px; left: -100px; width: 400px; height: 400px;
+    background: rgba(255,255,255,0.08); border-radius: 50%;
+  }
+  .cta-section::after {
+    content: ''; position: absolute; bottom: -100px; right: -100px; width: 500px; height: 500px;
+    background: rgba(255,255,255,0.05); border-radius: 50%;
+  }
+  .cta-section h2 { font-size: 60px; font-weight: 800; letter-spacing: -2px; color: var(--white); margin-bottom: 16px; position: relative; z-index: 1; }
+  .cta-section p { font-size: 20px; color: rgba(255,255,255,0.8); margin-bottom: 40px; position: relative; z-index: 1; }
+  .cta-btn { background: var(--white); color: var(--teal); padding: 16px 48px; border-radius: 12px; font-size: 16px; font-weight: 700; text-decoration: none; display: inline-block; transition: all 0.2s; position: relative; z-index: 1; }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
+
+  footer { padding: 40px 80px; background: var(--white); border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  footer p { font-size: 13px; color: var(--gray); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-mark">💚</div>
+    Mira Health
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Features</a></li>
+    <li><a href="#">How it works</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="#" class="btn-nav-ghost">Log in</a>
+    <a href="#" class="btn-nav-teal">Join Waitlist</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✨ Now in Beta — Limited Access</div>
+    <h1>Your Health,<br><span class="gradient">Simplified.</span></h1>
+    <p>Mira turns your wearable data into clear, actionable insights. No noise. No overwhelm. Just you, your body, and the clarity to make better choices every day.</p>
+    <div class="waitlist-form">
+      <input type="email" placeholder="Enter your email...">
+      <button>Join Waitlist →</button>
+    </div>
+    <div class="hero-social">
+      <div class="avatars">
+        <div class="avatar">😊</div>
+        <div class="avatar">🧑</div>
+        <div class="avatar">👩</div>
+        <div class="avatar">👨</div>
+      </div>
+      <p>Join <strong>25,000+ early users</strong> already on the waitlist</p>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="phone-header">
+          <div>
+            <div class="phone-time">09:41</div>
+            <div class="phone-date">Tuesday, March 14</div>
+          </div>
+          <span style="font-size:20px;">🔔</span>
+        </div>
+        <div class="phone-greeting">
+          <h4>Good morning, Sofia 👋</h4>
+          <p>You're on a 7-day streak!</p>
+        </div>
+        <div class="phone-card">
+          <div class="card-label">Sleep Score</div>
+          <div class="card-value">87 <span class="card-unit">/ 100</span></div>
+          <div class="card-trend">↑ 12 points from last week</div>
+        </div>
+        <div class="ring-container">
+          <div class="ring">
+            <svg viewBox="0 0 80 80" width="80" height="80">
+              <circle class="ring-circle ring-bg" cx="40" cy="40" r="34"/>
+              <circle class="ring-circle ring-fg" cx="40" cy="40" r="34" stroke="#14b8a6" stroke-dasharray="213.6" stroke-dashoffset="48"/>
+            </svg>
+            <div class="ring-label"><span class="val">78%</span><span class="lbl">Activity</span></div>
+          </div>
+          <div class="ring">
+            <svg viewBox="0 0 80 80" width="80" height="80">
+              <circle class="ring-circle ring-bg" cx="40" cy="40" r="34"/>
+              <circle class="ring-circle ring-fg" cx="40" cy="40" r="34" stroke="#8b5cf6" stroke-dasharray="213.6" stroke-dashoffset="64"/>
+            </svg>
+            <div class="ring-label"><span class="val">70%</span><span class="lbl">Recovery</span></div>
+          </div>
+          <div class="ring">
+            <svg viewBox="0 0 80 80" width="80" height="80">
+              <circle class="ring-circle ring-bg" cx="40" cy="40" r="34"/>
+              <circle class="ring-circle ring-fg" cx="40" cy="40" r="34" stroke="#f59e0b" stroke-dasharray="213.6" stroke-dashoffset="32"/>
+            </svg>
+            <div class="ring-label"><span class="val">85%</span><span class="lbl">Mindful</span></div>
+          </div>
+        </div>
+        <div class="phone-mini-cards">
+          <div class="mini-card">
+            <span class="icon">❤️</span>
+            <div class="val">64</div>
+            <div class="lbl">Resting HR</div>
+          </div>
+          <div class="mini-card">
+            <span class="icon">🦶</span>
+            <div class="val">8.4k</div>
+            <div class="lbl">Steps</div>
+          </div>
+          <div class="mini-card">
+            <span class="icon">💧</span>
+            <div class="val">1.8L</div>
+            <div class="lbl">Hydration</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="feat-top">
+    <div class="feat-chip">Features</div>
+    <h2>Health insights that<br>actually make sense</h2>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon-wrap teal">🌙</div>
+      <h3>Sleep Tracking</h3>
+      <p>Detailed sleep stage analysis with personalized recommendations to help you wake up feeling restored. See patterns emerge over weeks, not just last night.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon-wrap teal">❤️</div>
+      <h3>Heart Rate Monitor</h3>
+      <p>Continuous heart rate monitoring with anomaly detection. Know your resting rate, recovery zone, and get gentle alerts when something looks off.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon-wrap violet">🤖</div>
+      <h3>AI Insights</h3>
+      <p>Mira's AI connects the dots between your sleep, activity, and stress data to surface insights you'd never notice alone — and tells you what to do about them.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Join 25,000+ Early Users</h2>
+  <p>Be first to experience the future of personal health. Founding members get lifetime 40% off.</p>
+  <a href="#" class="cta-btn">Claim Your Early Access →</a>
+</section>
+
+<footer>
+  <div class="logo">
+    <div class="logo-mark">💚</div>
+    Mira Health
+  </div>
+  <p>© 2026 Mira Health, Inc. · Privacy · Terms · Contact</p>
+</footer>
+
+</body>
+</html>

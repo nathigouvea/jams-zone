@@ -506,6 +506,17 @@ h3 { font-size: 1.25rem; }
   position: relative;
   overflow: hidden;
 }
+.work-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.work-card:hover .work-card-img img {
+  transform: scale(1.04);
+}
 .work-card-wide .work-card-img { height: 300px; }
 
 .work-card-overlay {

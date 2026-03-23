@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Primoris Law — Clarity. Strength. Results.</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --white: #FFFFFF;
+    --navy: #1E3A5F;
+    --navy-dark: #142B48;
+    --navy-mid: #284E80;
+    --gold: #C9973A;
+    --gold-light: #DEB466;
+    --grey: #F8F9FA;
+    --grey-mid: #E5E7EB;
+    --text: #1A1A2E;
+    --text-muted: #6B7280;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--white); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px; height: 72px;
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--grey-mid);
+  }
+  .nav-logo {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 22px; color: var(--navy);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .nav-logo-mark {
+    width: 36px; height: 36px; background: var(--navy);
+    border-radius: 4px; display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; color: var(--gold); font-family: 'Libre Baskerville', serif;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--text-muted); text-decoration: none; font-size: 14px;
+    font-weight: 500; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-consult {
+    background: var(--navy); color: var(--white);
+    padding: 10px 24px; font-size: 13px; font-weight: 600;
+    text-decoration: none; border-radius: 6px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .nav-consult:hover { background: var(--navy-mid); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 72px); margin-top: 72px;
+    overflow: hidden;
+  }
+  .hero-left {
+    background: var(--navy-dark);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 64px; position: relative; overflow: hidden;
+  }
+  .hero-left::before {
+    content: '§';
+    position: absolute; bottom: -40px; right: -30px;
+    font-size: 400px; color: rgba(255,255,255,0.025);
+    font-family: 'Libre Baskerville', serif; pointer-events: none;
+    line-height: 1;
+  }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+  .hero-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(40px, 4.5vw, 64px); font-weight: 700;
+    line-height: 1.15; color: var(--white); position: relative; z-index: 1;
+  }
+  .hero-title em { color: var(--gold); font-style: italic; }
+  .hero-rule { width: 56px; height: 3px; background: var(--gold); margin: 28px 0; }
+  .hero-sub {
+    font-size: 17px; line-height: 1.8; font-weight: 300;
+    color: rgba(255,255,255,0.7); max-width: 440px; position: relative; z-index: 1;
+  }
+  .hero-actions { display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap; position: relative; z-index: 1; }
+  .btn-gold {
+    background: var(--gold); color: var(--navy-dark);
+    padding: 15px 36px; font-size: 14px; font-weight: 700;
+    letter-spacing: 1px; text-decoration: none; border-radius: 6px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline-white {
+    color: rgba(255,255,255,0.85); border: 1.5px solid rgba(255,255,255,0.25);
+    padding: 14px 32px; font-size: 14px; font-weight: 600;
+    text-decoration: none; border-radius: 6px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline-white:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-trust {
+    display: flex; gap: 32px; margin-top: 56px; padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.08); position: relative; z-index: 1;
+  }
+  .trust-item { display: flex; align-items: center; gap: 8px; }
+  .trust-icon { font-size: 18px; }
+  .trust-text { font-size: 13px; color: rgba(255,255,255,0.5); font-weight: 500; }
+  .trust-text strong { color: rgba(255,255,255,0.85); }
+
+  .hero-right { position: relative; overflow: hidden; }
+  .hero-right img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center;
+    display: block; filter: brightness(0.75) saturate(0.85);
+  }
+  .hero-right-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(20,43,72,0.6) 0%, transparent 30%),
+                linear-gradient(to top, rgba(20,43,72,0.4) 0%, transparent 50%);
+  }
+
+  /* PRACTICE AREAS */
+  .practices {
+    padding: 96px 56px; background: var(--grey);
+    border-top: 1px solid var(--grey-mid); border-bottom: 1px solid var(--grey-mid);
+  }
+  .practices-header { text-align: center; margin-bottom: 64px; }
+  .practices-eyebrow {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); font-weight: 700; margin-bottom: 12px;
+  }
+  .practices-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(32px, 4vw, 52px); color: var(--navy);
+  }
+  .practices-sub { margin-top: 12px; font-size: 16px; color: var(--text-muted); font-weight: 300; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .practices-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .practice-card {
+    background: var(--white); border: 1px solid var(--grey-mid);
+    border-radius: 12px; padding: 36px;
+    border-top: 4px solid transparent;
+    transition: border-top-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+  .practice-card:hover {
+    border-top-color: var(--gold);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+  }
+  .practice-icon {
+    width: 52px; height: 52px; background: rgba(30,58,95,0.06);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin-bottom: 20px;
+  }
+  .practice-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 20px; color: var(--navy); margin-bottom: 12px;
+  }
+  .practice-desc { font-size: 14px; line-height: 1.8; color: var(--text-muted); font-weight: 400; }
+  .practice-link {
+    display: inline-block; margin-top: 20px; color: var(--gold);
+    font-size: 13px; font-weight: 600; text-decoration: none;
+    border-bottom: 1px solid rgba(201,151,58,0.3);
+    padding-bottom: 2px; transition: border-color 0.2s;
+  }
+  .practice-link:hover { border-color: var(--gold); }
+
+  /* TEAM */
+  .team { padding: 96px 56px; }
+  .team-header { text-align: center; margin-bottom: 64px; }
+  .team-eyebrow {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); font-weight: 700; margin-bottom: 12px;
+  }
+  .team-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(32px, 4vw, 52px); color: var(--navy);
+  }
+  .team-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+    max-width: 900px; margin: 0 auto;
+  }
+  .team-card { text-align: center; }
+  .team-photo-wrap {
+    position: relative; display: inline-block; margin-bottom: 24px;
+  }
+  .team-photo-wrap img {
+    width: 160px; height: 160px; border-radius: 50%; object-fit: cover;
+    display: block; border: 4px solid var(--white);
+    box-shadow: 0 0 0 3px var(--navy), 0 8px 32px rgba(30,58,95,0.15);
+    transition: box-shadow 0.3s;
+  }
+  .team-card:hover .team-photo-wrap img { box-shadow: 0 0 0 3px var(--gold), 0 12px 40px rgba(30,58,95,0.2); }
+  .team-name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 20px; color: var(--navy); margin-bottom: 6px;
+  }
+  .team-role { font-size: 13px; color: var(--gold); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+  .team-bio { font-size: 14px; line-height: 1.7; color: var(--text-muted); font-weight: 300; }
+
+  /* CTA BAND */
+  .cta-band {
+    background: var(--navy); padding: 80px 56px;
+    display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center;
+  }
+  .cta-band-text {}
+  .cta-band h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(28px, 3.5vw, 44px); color: var(--white);
+    line-height: 1.2;
+  }
+  .cta-band h2 em { color: var(--gold); font-style: italic; }
+  .cta-band p { margin-top: 12px; font-size: 16px; color: rgba(255,255,255,0.6); font-weight: 300; }
+  .cta-band-actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; }
+  .btn-gold-lg {
+    background: var(--gold); color: var(--navy-dark);
+    padding: 16px 40px; font-size: 15px; font-weight: 700;
+    text-decoration: none; border-radius: 8px; white-space: nowrap;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-gold-lg:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .cta-phone { font-size: 14px; color: rgba(255,255,255,0.5); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy-dark); padding: 40px 56px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-logo {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 20px; color: var(--white);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .footer-logo-mark {
+    width: 32px; height: 32px; background: var(--gold);
+    border-radius: 4px; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: var(--navy-dark);
+    font-family: 'Libre Baskerville', serif;
+  }
+  .footer-links { display: flex; gap: 28px; }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 56px 24px; }
+    .hero-right { height: 280px; }
+    .practices { padding: 60px 24px; }
+    .practices-grid { grid-template-columns: 1fr; }
+    .team { padding: 60px 24px; }
+    .team-grid { grid-template-columns: 1fr; max-width: 360px; }
+    .cta-band { grid-template-columns: 1fr; padding: 60px 24px; }
+    .cta-band-actions { align-items: flex-start; }
+    footer { flex-direction: column; gap: 24px; text-align: center; padding: 32px 24px; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-mark">P</div>
+    Primoris Law
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Practice Areas</a></li>
+    <li><a href="#">Our Team</a></li>
+    <li><a href="#">Results</a></li>
+    <li><a href="#">Insights</a></li>
+  </ul>
+  <a href="#" class="nav-consult">Free Consultation</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Primoris Law Group</p>
+    <h1 class="hero-title">Strong advocacy.<br><em>Decisive results.</em><br>Always in your corner.</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">Primoris Law Group has represented individuals and businesses for over 30 years. We combine deep legal expertise with a relentlessly client-first approach.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-gold">Book a Free Consultation</a>
+      <a href="#" class="btn-outline-white">Our Practice Areas</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item">
+        <span class="trust-icon">⚖️</span>
+        <span class="trust-text"><strong>30+ years</strong> of practice</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">🏆</span>
+        <span class="trust-text"><strong>1,200+</strong> cases won</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">⭐</span>
+        <span class="trust-text"><strong>Top-rated</strong> Legal 500</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?w=1600&h=900&q=85&fit=crop" alt="Justice scales and legal books" loading="lazy">
+    <div class="hero-right-overlay"></div>
+  </div>
+</section>
+
+<!-- PRACTICE AREAS -->
+<section class="practices">
+  <div class="practices-header">
+    <p class="practices-eyebrow">What We Do</p>
+    <h2 class="practices-title">Practice Areas</h2>
+    <p class="practices-sub">Comprehensive legal counsel across every stage of life and business.</p>
+  </div>
+  <div class="practices-grid">
+    <div class="practice-card">
+      <div class="practice-icon">🏢</div>
+      <h3 class="practice-title">Corporate Law</h3>
+      <p class="practice-desc">From company formation and M&A transactions to shareholder disputes, we protect your business interests with precision and discretion.</p>
+      <a href="#" class="practice-link">Learn more →</a>
+    </div>
+    <div class="practice-card">
+      <div class="practice-icon">🏡</div>
+      <h3 class="practice-title">Real Estate & Property</h3>
+      <p class="practice-desc">Residential and commercial conveyancing, lease negotiations, and property disputes handled by specialists who know every clause by heart.</p>
+      <a href="#" class="practice-link">Learn more →</a>
+    </div>
+    <div class="practice-card">
+      <div class="practice-icon">👨‍👩‍👧</div>
+      <h3 class="practice-title">Family Law</h3>
+      <p class="practice-desc">Sensitive, compassionate representation in divorce, custody, and inheritance proceedings. We advocate for your family's future with care.</p>
+      <a href="#" class="practice-link">Learn more →</a>
+    </div>
+    <div class="practice-card">
+      <div class="practice-icon">⚖️</div>
+      <h3 class="practice-title">Litigation & Disputes</h3>
+      <p class="practice-desc">When negotiation fails, our trial-tested litigators step in. We have a proven record across civil, commercial, and administrative courts.</p>
+      <a href="#" class="practice-link">Learn more →</a>
+    </div>
+    <div class="practice-card">
+      <div class="practice-icon">🌍</div>
+      <h3 class="practice-title">International Law</h3>
+      <p class="practice-desc">Cross-border transactions, international arbitration, and expatriate legal services. We operate across 12 jurisdictions worldwide.</p>
+      <a href="#" class="practice-link">Learn more →</a>
+    </div>
+    <div class="practice-card">
+      <div class="practice-icon">📜</div>
+      <h3 class="practice-title">Wills & Estates</h3>
+      <p class="practice-desc">Protect what you've built. Our estate planning attorneys craft wills, trusts, and succession plans tailored to your wishes and your legacy.</p>
+      <a href="#" class="practice-link">Learn more →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team">
+  <div class="team-header">
+    <p class="team-eyebrow">The Team</p>
+    <h2 class="team-title">Partners & Senior Counsel</h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-photo-wrap">
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&q=80&fit=crop" alt="Jonathan Primoris, Managing Partner" loading="lazy">
+      </div>
+      <h3 class="team-name">Jonathan Primoris</h3>
+      <p class="team-role">Managing Partner</p>
+      <p class="team-bio">30 years specialising in corporate litigation and international arbitration. Called to the Bar at Lincoln's Inn, Oxford LLM.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-photo-wrap">
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&q=80&fit=crop" alt="Dr. Amara Osei, Senior Partner" loading="lazy">
+      </div>
+      <h3 class="team-name">Dr. Amara Osei</h3>
+      <p class="team-role">Senior Partner — Family Law</p>
+      <p class="team-bio">Recognised by Chambers & Partners as a leading family law practitioner. Author of two published legal textbooks.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-photo-wrap">
+        <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=300&h=300&q=80&fit=crop" alt="Marcus Reid, Head of Corporate" loading="lazy">
+      </div>
+      <h3 class="team-name">Marcus Reid</h3>
+      <p class="team-role">Head of Corporate Law</p>
+      <p class="team-bio">Former GC at a FTSE 250 company. Advises private equity, startups, and listed companies on mergers and governance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-band-text">
+    <h2>Your first consultation is <em>completely free.</em></h2>
+    <p>No obligation, no pressure — just clear, honest legal guidance from day one.</p>
+  </div>
+  <div class="cta-band-actions">
+    <a href="#" class="btn-gold-lg">Schedule a Consultation →</a>
+    <p class="cta-phone">Or call: +44 20 7946 0400</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">
+    <div class="footer-logo-mark">P</div>
+    Primoris Law Group
+  </div>
+  <div class="footer-links">
+    <a href="#">Practice Areas</a>
+    <a href="#">Team</a>
+    <a href="#">News</a>
+    <a href="#">Privacy</a>
+    <a href="#">Legal Notice</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 Primoris Law Group LLP</div>
+</footer>
+
+</body>
+</html>
