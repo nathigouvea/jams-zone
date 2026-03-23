@@ -1033,3 +1033,44 @@ h3 { font-size: 1.25rem; }
   .hero-cta .btn { width: 100%; }
   .footer-links { grid-template-columns: 1fr; }
 }
+
+/* ---- About Section ---- */
+.about-section {
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.about-inner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.about-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  flex-shrink: 0;
+  border: 3px solid var(--primary);
+}
+.about-text p {
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  max-width: 640px;
+}
+
+/* ---- Form Success ---- */
+.form-success {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.875rem 1.25rem;
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: var(--radius);
+  color: #166534;
+  font-size: 0.9375rem;
+  font-weight: 500;
+}

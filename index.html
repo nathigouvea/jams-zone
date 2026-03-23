@@ -52,15 +52,15 @@
             <span class="badge-dot" aria-hidden="true"></span>
             Available for projects
           </div>
-          <h1>We build websites that <span class="text-gradient">grow your business.</span></h1>
-          <p class="hero-subtitle">Fast, beautiful, and built to convert. We design and develop custom websites for startups, agencies, and growing businesses — delivered in 2 weeks, not 2 months.</p>
+          <h1>Hi, I'm Nathielle. I build websites that <span class="text-gradient">people actually love.</span></h1>
+          <p class="hero-subtitle">I'm a freelance web designer and developer based in Porto. I help small businesses, founders, and creators get online with a site that looks great and works even better.</p>
           <div class="hero-cta">
-            <a href="#contact" class="btn btn-primary btn-xl">Start a project</a>
-            <a href="#work" class="btn btn-outline btn-xl">See our work</a>
+            <a href="#contact" class="btn btn-primary btn-xl">Work with me</a>
+            <a href="#work" class="btn btn-outline btn-xl">See my work</a>
           </div>
           <div class="hero-proof">
             <div class="proof-item">
-              <span class="proof-num">50+</span>
+              <span class="proof-num">20+</span>
               <span class="proof-label">Projects delivered</span>
             </div>
             <div class="proof-item">
@@ -69,7 +69,7 @@
             </div>
             <div class="proof-item">
               <span class="proof-num">Porto</span>
-              <span class="proof-label">Based, global reach</span>
+              <span class="proof-label">Based, remote-friendly</span>
             </div>
           </div>
         </div>
@@ -100,17 +100,14 @@
       </div>
     </section>
 
-    <!-- TRUSTED BY -->
-    <section class="logos-section" aria-label="Recent clients">
+    <!-- ABOUT -->
+    <section class="about-section" aria-label="About Nathielle">
       <div class="container">
-        <p class="logos-label">Recent clients & projects</p>
-        <div class="logos-row">
-          <span class="logo-text">Nexlify</span>
-          <span class="logo-text">Arcform</span>
-          <span class="logo-text">Vantio</span>
-          <span class="logo-text">Cloudmere</span>
-          <span class="logo-text">Stackly</span>
-          <span class="logo-text">Orbio</span>
+        <div class="about-inner fade-up">
+          <img src="/nathielle.jpg" alt="Nathielle Gouvea" class="about-photo" width="120" height="120"/>
+          <div class="about-text">
+            <p>I started jams.zone because I believe every small business deserves a great website, not just the big ones with big budgets. I handle design, development, and launch myself, so you always know who you're talking to and what's happening with your project.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -120,8 +117,8 @@
       <div class="container">
         <div class="section-header fade-up">
           <span class="section-tag">Our work</span>
-          <h2>Projects we're proud of</h2>
-          <p>Every project starts with a problem to solve. Here's how we've solved them.</p>
+          <h2>Projects I'm proud of</h2>
+          <p>Every project starts with a problem to solve. Here's how I've tackled them.</p>
         </div>
         <div class="work-grid">
 
@@ -438,7 +435,7 @@
           <div class="contact-text">
             <span class="section-tag">Start a project</span>
             <h2>Let's build something great together.</h2>
-            <p>Tell us about your project. We'll get back to you within 24 hours with a clear proposal and timeline.</p>
+            <p>Tell me about your project. I'll get back to you within 24 hours, no agency fluff, just a real conversation.</p>
             <div class="contact-details">
               <div class="contact-item">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -479,7 +476,11 @@
               <textarea id="fmessage" name="message" rows="4" placeholder="What are you building? Who is it for? Do you have a timeline or budget in mind?" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-full">Send message →</button>
-            <p class="form-note">We respond within 24 hours. No sales pitches, no spam.</p>
+            <p class="form-note">I respond within 24 hours. No spam, no pressure.</p>
+            <div class="form-success" id="form-success" aria-live="polite" hidden>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Message sent! I'll be in touch soon.
+            </div>
           </form>
         </div>
       </div>
@@ -538,5 +539,35 @@
   </footer>
 
   <script src="main.js" defer></script>
+  <script>
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('form-success');
+    if (form) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            form.reset();
+            success.hidden = false;
+            btn.textContent = 'Sent!';
+          } else {
+            btn.textContent = 'Something went wrong — try again';
+            btn.disabled = false;
+          }
+        } catch {
+          btn.textContent = 'Something went wrong — try again';
+          btn.disabled = false;
+        }
+      });
+    }
+  </script>
 </body>
 </html>
