@@ -454,33 +454,33 @@
               </div>
             </div>
           </div>
-          <form class="contact-form" aria-label="Project enquiry form" id="contact-form">
+          <form class="contact-form" aria-label="Project enquiry form" id="contact-form" action="https://formspree.io/f/myknqvjv" method="POST">
             <div class="form-row">
               <div class="form-group">
                 <label for="fname">Your name</label>
-                <input type="text" id="fname" placeholder="Ana Silva" required/>
+                <input type="text" id="fname" name="name" placeholder="Ana Silva" required/>
               </div>
               <div class="form-group">
                 <label for="femail">Email</label>
-                <input type="email" id="femail" placeholder="ana@company.com" required/>
+                <input type="email" id="femail" name="email" placeholder="ana@company.com" required/>
               </div>
             </div>
             <div class="form-group">
               <label for="fservice">What do you need?</label>
-              <select id="fservice" required>
+              <select id="fservice" name="service" required>
                 <option value="">Select a service</option>
-                <option>Landing Page (from €499)</option>
-                <option>Business Website (from €999)</option>
-                <option>SaaS / Web App (from €1,999)</option>
-                <option>Framer / Webflow Site (from €799)</option>
-                <option>E-Commerce Store (from €1,499)</option>
-                <option>Monthly Retainer (from €299/mo)</option>
+                <option>Landing Page</option>
+                <option>Business Website</option>
+                <option>SaaS / Web App</option>
+                <option>Framer / Webflow Site</option>
+                <option>E-Commerce Store</option>
+                <option>Monthly Retainer</option>
                 <option>Something else</option>
               </select>
             </div>
             <div class="form-group">
               <label for="fmessage">Tell us about your project</label>
-              <textarea id="fmessage" rows="4" placeholder="What are you building? Who is it for? Do you have a timeline or budget in mind?" required></textarea>
+              <textarea id="fmessage" name="message" rows="4" placeholder="What are you building? Who is it for? Do you have a timeline or budget in mind?" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-full">Send message →</button>
             <p class="form-note">We respond within 24 hours. No sales pitches, no spam.</p>
