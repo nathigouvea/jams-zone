@@ -47,72 +47,39 @@
 
     <!-- HERO -->
     <section class="hero">
-      <div class="hero-blobs" aria-hidden="true">
-        <svg class="goo-filter" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <filter id="goo">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur"/>
-              <feColorMatrix in="blur" mode="matrix"
-                values="1 0 0 0 0
-                        0 1 0 0 0
-                        0 0 1 0 0
-                        0 0 0 28 -10" result="goo"/>
-              <feBlend in="SourceGraphic" in2="goo"/>
-            </filter>
-          </defs>
-        </svg>
-        <div class="gel-wrap">
-          <div class="gel gel-1"></div>
-          <div class="gel gel-2"></div>
-          <div class="gel gel-3"></div>
+      <canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>
+
+      <div class="hero-inner">
+        <div class="hero-eyebrow fade-up">
+          <span class="hero-dot"></span>
+          <span data-i18n="hero.badge">Available for projects</span>
+          <span class="hero-eyebrow-line"></span>
         </div>
-      </div>
-      <div class="container">
-        <div class="hero-content fade-up">
-          <div class="hero-badge">
-            <span class="badge-dot" aria-hidden="true"></span>
-            Available for projects
-          </div>
-          <h1 data-i18n="hero.title">Hi, I'm Nathielle. I build websites that <span class="text-gradient">people actually love.</span></h1>
-          <p class="hero-subtitle" data-i18n="hero.subtitle">I'm a freelance web designer and developer based in Porto. I help small businesses, founders, and creators get online with a site that looks great and works even better.</p>
-          <div class="hero-cta">
-            <a href="#contact" class="btn btn-primary btn-xl" data-i18n="hero.cta1">Work with me</a>
-            <a href="#work" class="btn btn-outline btn-xl" data-i18n="hero.cta2">See my work</a>
-          </div>
-          <div class="hero-proof">
-            <div class="proof-item">
-              <span class="proof-num">2wk</span>
-              <span class="proof-label">Average delivery</span>
-            </div>
-            <div class="proof-item">
-              <span class="proof-num">Porto</span>
-              <span class="proof-label">Based, remote-friendly</span>
-            </div>
-          </div>
+
+        <h1 class="hero-headline fade-up" data-i18n="hero.title">
+          <span class="line">Websites that make</span>
+          <span class="line line-accent">people stop scrolling.</span>
+        </h1>
+
+        <p class="hero-sub fade-up" data-i18n="hero.subtitle">
+          I'm Nathielle — freelance web designer & developer from Porto.
+          I build sites that look stunning and actually convert.
+        </p>
+
+        <div class="hero-actions fade-up">
+          <a href="#contact" class="btn-dark" data-i18n="hero.cta1">Work with me</a>
+          <a href="#work" class="btn-ghost-dark" data-i18n="hero.cta2">
+            See my work
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
-        <div class="hero-visual fade-up" aria-hidden="true">
-          <div class="hero-card-stack">
-            <div class="stack-card stack-card-back"></div>
-            <div class="stack-card stack-card-mid"></div>
-            <div class="stack-card stack-card-front">
-              <div class="sc-header">
-                <div class="sc-dots"><span></span><span></span><span></span></div>
-                <span class="sc-url">nexlify.com</span>
-              </div>
-              <div class="sc-hero-bar"></div>
-              <div class="sc-content">
-                <div class="sc-line sc-line-lg"></div>
-                <div class="sc-line sc-line-md"></div>
-                <div class="sc-line sc-line-sm"></div>
-                <div class="sc-buttons">
-                  <div class="sc-btn sc-btn-primary"></div>
-                  <div class="sc-btn sc-btn-ghost"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="hero-float-tag tag-1">✓ Delivered in 10 days</div>
-          <div class="hero-float-tag tag-2">+38% conversion lift</div>
+
+        <div class="hero-meta fade-up">
+          <span>Porto, PT</span>
+          <span class="hero-meta-sep">·</span>
+          <span>Remote worldwide</span>
+          <span class="hero-meta-sep">·</span>
+          <span>2 week delivery</span>
         </div>
       </div>
     </section>
@@ -497,14 +464,105 @@
 
   <script src="main.js" defer></script>
   <script>
+  // ---- Hero canvas: fluid gradient orbs that follow cursor ----
+  (function() {
+    const canvas = document.getElementById('heroCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W, H, mouse = { x: 0.5, y: 0.5 }, target = { x: 0.5, y: 0.5 };
+
+    function resize() {
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    document.addEventListener('mousemove', e => {
+      target.x = e.clientX / window.innerWidth;
+      target.y = e.clientY / window.innerHeight;
+    });
+
+    const orbs = [
+      { x: 0.2,  y: 0.3,  r: 0.42, vx: 0.0003, vy: 0.0002, color: [249, 92, 75],   a: 0.22 },
+      { x: 0.75, y: 0.6,  r: 0.35, vx:-0.0002, vy: 0.0003, color: [251, 125, 112],  a: 0.16 },
+      { x: 0.5,  y: 0.85, r: 0.28, vx: 0.0004, vy:-0.0002, color: [180, 60, 40],    a: 0.12 },
+      { x: 0.88, y: 0.15, r: 0.22, vx:-0.0003, vy: 0.0004, color: [249, 92, 75],    a: 0.10 },
+    ];
+
+    let t = 0;
+    function draw() {
+      t++;
+      // Smooth mouse follow
+      mouse.x += (target.x - mouse.x) * 0.04;
+      mouse.y += (target.y - mouse.y) * 0.04;
+
+      ctx.clearRect(0, 0, W, H);
+
+      // Background
+      ctx.fillStyle = '#0a0a0a';
+      ctx.fillRect(0, 0, W, H);
+
+      // Subtle grid
+      ctx.strokeStyle = 'rgba(255,255,255,0.025)';
+      ctx.lineWidth = 1;
+      const gridSize = 60;
+      for (let x = 0; x < W; x += gridSize) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+      }
+      for (let y = 0; y < H; y += gridSize) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+      }
+
+      // Draw orbs
+      orbs.forEach((orb, i) => {
+        // Drift + gentle mouse attraction
+        orb.x += orb.vx + (mouse.x - orb.x) * 0.00015 * (i % 2 === 0 ? 1 : -0.5);
+        orb.y += orb.vy + (mouse.y - orb.y) * 0.00015 * (i % 2 === 0 ? -0.5 : 1);
+        // Bounce
+        if (orb.x < 0 || orb.x > 1) orb.vx *= -1;
+        if (orb.y < 0 || orb.y > 1) orb.vy *= -1;
+
+        const pulse = 1 + Math.sin(t * 0.008 + i * 1.3) * 0.06;
+        const rx = orb.x * W, ry = orb.y * H, rr = Math.min(W, H) * orb.r * pulse;
+        const [r, g, b] = orb.color;
+        const grad = ctx.createRadialGradient(rx, ry, 0, rx, ry, rr);
+        grad.addColorStop(0,   `rgba(${r},${g},${b},${orb.a})`);
+        grad.addColorStop(0.5, `rgba(${r},${g},${b},${orb.a * 0.5})`);
+        grad.addColorStop(1,   `rgba(${r},${g},${b},0)`);
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(rx, ry, rr, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // Mouse glow
+      const mg = ctx.createRadialGradient(
+        mouse.x * W, mouse.y * H, 0,
+        mouse.x * W, mouse.y * H, Math.min(W, H) * 0.18
+      );
+      mg.addColorStop(0, 'rgba(249,92,75,0.12)');
+      mg.addColorStop(1, 'rgba(249,92,75,0)');
+      ctx.fillStyle = mg;
+      ctx.beginPath();
+      ctx.arc(mouse.x * W, mouse.y * H, Math.min(W, H) * 0.18, 0, Math.PI * 2);
+      ctx.fill();
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+  </script>
+  <script>
     const translations = {
       en: {
         'nav.work': 'Work',
         'nav.services': 'Services',
         'nav.contact': 'Contact',
         'nav.cta': 'Start a project',
-        'hero.title': "Hi, I'm Nathielle. I build websites that <span class=\"text-gradient\">people actually love.</span>",
-        'hero.subtitle': "I'm a freelance web designer and developer based in Porto. I help small businesses, restaurants, and creators get online with a site that looks great and works even better.",
+        'hero.badge': 'Available for projects',
+        'hero.title': '<span class="line">Websites that make</span><span class="line line-accent">people stop scrolling.</span>',
+        'hero.subtitle': "I'm Nathielle — freelance web designer & developer from Porto. I build sites that look stunning and actually convert.",
         'hero.cta1': 'Work with me',
         'hero.cta2': 'See my work',
         'about.text': "I started jams.zone because I believe every small business deserves a great website, not just the big ones with big budgets. I handle design, development, and launch myself, so you always know who you're talking to and what's happening with your project.",
@@ -544,8 +602,9 @@
         'nav.services': 'Serviços',
         'nav.contact': 'Contacto',
         'nav.cta': 'Iniciar projeto',
-        'hero.title': "Olá, sou a Nathielle. Crio websites que <span class=\"text-gradient\">as pessoas adoram.</span>",
-        'hero.subtitle': "Sou designer e desenvolvedora web freelance, baseada no Porto. Ajudo pequenos negócios, restaurantes e criadores a marcar presença online com um site bonito e eficaz.",
+        'hero.badge': 'Disponível para projetos',
+        'hero.title': '<span class="line">Websites que fazem as pessoas</span><span class="line line-accent">parar de fazer scroll.</span>',
+        'hero.subtitle': "Sou a Nathielle — designer e desenvolvedora web freelance do Porto. Crio sites que impressionam e convertem.",
         'hero.cta1': 'Trabalha comigo',
         'hero.cta2': 'Ver os meus projetos',
         'about.text': "Criei a jams.zone porque acredito que qualquer pequeno negócio merece um site de qualidade, não só as grandes empresas com grandes orçamentos. Trato do design, do desenvolvimento e do lançamento, por isso sabes sempre com quem estás a falar e o que está a acontecer com o teu projeto.",
