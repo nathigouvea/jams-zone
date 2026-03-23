@@ -243,7 +243,7 @@ h3 { font-size: 1.25rem; }
   position: relative;
 }
 
-/* ---- Blob background ---- */
+/* ---- Gel / Glass hero background ---- */
 .hero-blobs {
   position: absolute;
   inset: 0;
@@ -252,65 +252,96 @@ h3 { font-size: 1.25rem; }
   pointer-events: none;
 }
 
-.blob {
+.goo-filter {
   position: absolute;
-  border-radius: 50%;
-  will-change: transform;
+  width: 0;
+  height: 0;
 }
 
-/* Main orb — big soft coral aura, left-center */
-.blob-1 {
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle at 40% 40%, #F95C4B 0%, #fb9d8f 40%, transparent 70%);
-  filter: blur(90px);
-  opacity: 0.5;
-  top: 50%;
-  left: 10%;
-  transform: translateY(-50%);
-  animation: orb-breathe 10s ease-in-out infinite;
+.gel-wrap {
+  position: absolute;
+  inset: 0;
+  filter: url(#goo) blur(2px);
 }
 
-/* Secondary orb — soft peach/cream, right side */
-.blob-2 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle at 60% 40%, #fbcfc9 0%, #F95C4B 35%, transparent 70%);
-  filter: blur(100px);
-  opacity: 0.35;
-  top: 0;
-  right: 5%;
-  animation: orb-breathe 14s ease-in-out infinite reverse;
+.gel {
+  position: absolute;
+  will-change: transform, border-radius;
 }
 
-/* Subtle dark accent — bottom right */
-.blob-3 {
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, rgba(0,0,0,0.12) 0%, transparent 70%);
-  filter: blur(60px);
+/* Primary gel — coral, large, top-left */
+.gel-1 {
+  width: 520px;
+  height: 480px;
+  background: linear-gradient(135deg, #F95C4B 0%, #ff9d8d 50%, #fbccc5 100%);
+  top: -80px;
+  left: -60px;
+  border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+  opacity: 0.75;
+  animation: morph-1 12s ease-in-out infinite;
+}
+
+/* Secondary gel — lighter coral/peach, right */
+.gel-2 {
+  width: 400px;
+  height: 420px;
+  background: linear-gradient(135deg, #fb7d70 0%, #F95C4B 50%, #e04a3a 100%);
+  top: 30px;
+  right: 60px;
+  border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%;
   opacity: 0.6;
-  bottom: 0;
-  right: 20%;
-  animation: orb-drift 18s ease-in-out infinite;
+  animation: morph-2 16s ease-in-out infinite;
 }
 
-.blob-4 { display: none; }
-
-@keyframes orb-breathe {
-  0%   { transform: translateY(-50%) scale(1); }
-  50%  { transform: translateY(-50%) scale(1.08); }
-  100% { transform: translateY(-50%) scale(1); }
+/* Accent gel — small dark, bottom center */
+.gel-3 {
+  width: 280px;
+  height: 260px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #3d2a28 100%);
+  bottom: 20px;
+  left: 38%;
+  border-radius: 50% 50% 30% 70% / 40% 60% 40% 60%;
+  opacity: 0.45;
+  animation: morph-3 18s ease-in-out infinite;
 }
 
-@keyframes orb-drift {
-  0%   { transform: translate(0, 0); }
-  50%  { transform: translate(-30px, -40px); }
-  100% { transform: translate(0, 0); }
+/* Glass highlight shimmer over each gel */
+.gel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.35) 0%,
+    rgba(255,255,255,0.08) 40%,
+    transparent 60%
+  );
+}
+
+@keyframes morph-1 {
+  0%   { border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; transform: translate(0,0) rotate(0deg) scale(1); }
+  25%  { border-radius: 40% 60% 40% 60% / 60% 40% 70% 30%; transform: translate(30px, 25px) rotate(6deg) scale(1.04); }
+  50%  { border-radius: 70% 30% 50% 50% / 40% 70% 30% 60%; transform: translate(-20px, 50px) rotate(-4deg) scale(0.97); }
+  75%  { border-radius: 50% 50% 60% 40% / 50% 50% 60% 40%; transform: translate(10px, 20px) rotate(8deg) scale(1.02); }
+  100% { border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%; transform: translate(0,0) rotate(0deg) scale(1); }
+}
+
+@keyframes morph-2 {
+  0%   { border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%; transform: translate(0,0) rotate(0deg) scale(1); }
+  33%  { border-radius: 60% 40% 60% 40% / 40% 60% 40% 60%; transform: translate(-40px, 30px) rotate(-7deg) scale(1.06); }
+  66%  { border-radius: 30% 70% 50% 50% / 70% 30% 60% 40%; transform: translate(20px, -30px) rotate(5deg) scale(0.94); }
+  100% { border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%; transform: translate(0,0) rotate(0deg) scale(1); }
+}
+
+@keyframes morph-3 {
+  0%   { border-radius: 50% 50% 30% 70% / 40% 60% 40% 60%; transform: translate(0,0) scale(1); }
+  50%  { border-radius: 70% 30% 60% 40% / 60% 40% 70% 30%; transform: translate(-30px, -40px) scale(1.1); }
+  100% { border-radius: 50% 50% 30% 70% / 40% 60% 40% 60%; transform: translate(0,0) scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .blob { animation: none; }
+  .gel { animation: none; }
 }
 
 .hero .container {
